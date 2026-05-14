@@ -45,8 +45,9 @@ export async function generateMilestoneImage(
   currentMRR: number,
   options: ImageOptions = {}
 ): Promise<Buffer> {
-  const fontBold    = readFileSync(join(process.cwd(), 'public/fonts/Inter-Bold.ttf'))
-  const fontRegular = readFileSync(join(process.cwd(), 'public/fonts/Inter-Regular.ttf'))
+  // Use static WOFF files from @fontsource/inter — TTF variable fonts break Satori
+  const fontRegular = readFileSync(join(process.cwd(), 'node_modules/@fontsource/inter/files/inter-latin-400-normal.woff'))
+  const fontBold    = readFileSync(join(process.cwd(), 'node_modules/@fontsource/inter/files/inter-latin-700-normal.woff'))
 
   const {
     subscriberCount = 0,

@@ -1,65 +1,51 @@
-import { createClient, createServiceClient } from '@/lib/supabase/server'
+import { withAuth, err, ok } from '@/lib/api-helpers'
 import { createStripeClient } from '@/lib/stripe/mrr'
-import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  return withAuth(async (user, service) => {
+    const { apiKey, accountName, connectionId } = await request.json()
 
-  const { apiKey, accountName, connectionId } = await request.json()
+    if (!apiKey?.startsWith('sk_') && !apiKey?.startsWith('rk_')) {
+      return err('Invalid Stripe API key format')
+    }
 
-  if (!apiKey?.startsWith('sk_') && !apiKey?.startsWith('rk_')) {
-    return NextResponse.json({ error: 'Invalid Stripe API key format' }, { status: 400 })
-  }
+    try {
+      await createStripeClient(apiKey).subscriptions.list({ limit: 1 })
+    } catch {
+      return err('Invalid Stripe API key — could not authenticate')
+    }
 
-  // Validate the key works
-  try {
-    const stripe = createStripeClient(apiKey)
-    await stripe.subscriptions.list({ limit: 1 })
-  } catch {
-    return NextResponse.json({ error: 'Invalid Stripe API key — could not authenticate' }, { status: 400 })
-  }
+    const encrypted = Buffer.from(apiKey).toString('base64')
 
-  const encrypted = Buffer.from(apiKey).toString('base64')
-  const service   = await createServiceClient()
+    if (connectionId) {
+      const { error } = await service
+        .from('stripe_connections')
+        .update({ stripe_api_key_encrypted: encrypted, stripe_account_name: accountName || 'My SaaS' })
+        .eq('id', connectionId)
+        .eq('user_id', user.id)
+      if (error) return err(error.message, 500)
+    } else {
+      const { error } = await service
+        .from('stripe_connections')
+        .insert({ user_id: user.id, stripe_api_key_encrypted: encrypted, stripe_account_name: accountName || 'My SaaS' })
+      if (error) return err(error.message, 500)
+    }
 
-  if (connectionId) {
-    // Update existing connection
-    const { error } = await service
-      .from('stripe_connections')
-      .update({ stripe_api_key_encrypted: encrypted, stripe_account_name: accountName || 'My SaaS' })
-      .eq('id', connectionId)
-      .eq('user_id', user.id)
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  } else {
-    // Insert new connection
-    const { error } = await service
-      .from('stripe_connections')
-      .insert({ user_id: user.id, stripe_api_key_encrypted: encrypted, stripe_account_name: accountName || 'My SaaS' })
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  }
-
-  return NextResponse.json({ success: true })
+    return ok()
+  })
 }
 
 export async function DELETE(request: Request) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  return withAuth(async (user, service) => {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
 
-  const { searchParams } = new URL(request.url)
-  const connectionId = searchParams.get('id')
+    if (id) {
+      await service.from('stripe_connections').delete().eq('id', id).eq('user_id', user.id)
+    } else {
+      await service.from('stripe_connections').delete().eq('user_id', user.id)
+    }
 
-  const service = await createServiceClient()
-
-  if (connectionId) {
-    // Delete specific connection
-    await service.from('stripe_connections').delete().eq('id', connectionId).eq('user_id', user.id)
-  } else {
-    // Delete all (fallback)
-    await service.from('stripe_connections').delete().eq('user_id', user.id)
-  }
-
-  return NextResponse.json({ success: true })
+    return ok()
+  })
 }

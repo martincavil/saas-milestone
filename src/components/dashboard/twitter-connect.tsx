@@ -2,14 +2,10 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { X, Trash2, Loader2 } from 'lucide-react'
+import { XIcon } from '@/components/ui/x-icon'
+import { Trash2, Loader2 } from 'lucide-react'
 
-interface TwitterConnectProps {
-  isConnected: boolean
-  screenName?: string
-}
-
-export function TwitterConnect({ isConnected, screenName }: TwitterConnectProps) {
+export function TwitterConnect({ isConnected, screenName }: { isConnected: boolean; screenName?: string }) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
@@ -26,7 +22,7 @@ export function TwitterConnect({ isConnected, screenName }: TwitterConnectProps)
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500/15">
-              <X size={16} className="text-sky-400" />
+              <XIcon size={16} className="text-sky-400" />
             </div>
             <div>
               <p className="text-sm font-medium text-white">@{screenName}</p>
@@ -49,14 +45,14 @@ export function TwitterConnect({ isConnected, screenName }: TwitterConnectProps)
     <div className="rounded-2xl border border-white/8 bg-white/4 p-5">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>Connect X (Twitter)</p>
+          <p className="text-sm font-semibold text-white font-poppins">Connect X (Twitter)</p>
           <p className="text-xs text-white/40 mt-0.5">Auto-post milestones to your timeline</p>
         </div>
         <a
           href="/api/twitter-auth"
           className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white hover:border-sky-500/30 hover:bg-sky-500/10 hover:text-sky-300 transition-all"
         >
-          <X size={13} />
+          <XIcon size={12} />
           Connect
         </a>
       </div>

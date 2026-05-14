@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { TrendingUp, X, Check, Loader2, Zap, Bell } from 'lucide-react'
+import { TrendingUp, Check, Loader2, Zap, Bell } from 'lucide-react'
+import { XIcon } from '@/components/ui/x-icon'
+import { fmtMoney } from '@/lib/utils'
 
 // Each MRR value shown, one per tick
 const MRR_STEPS = [340, 512, 689, 821, 934, 978, 1000]
@@ -22,10 +24,6 @@ interface LogEntry {
   icon: React.ReactNode
   text: string
   color: string
-}
-
-function formatMRR(n: number): string {
-  return n >= 1000 ? `$${n / 1000}k` : `$${n}`
 }
 
 export function HeroAnimation() {
@@ -55,7 +53,7 @@ export function HeroAnimation() {
           setStep(next)
           addLog({
             icon: <TrendingUp size={11} className="text-indigo-400" />,
-            text: `MRR updated — ${formatMRR(MRR_STEPS[next])}`,
+            text: `MRR updated — ${fmtMoney(MRR_STEPS[next])}`,
             color: 'text-white/50',
           })
         }, TICK_MS)
@@ -88,7 +86,7 @@ export function HeroAnimation() {
 
     if (phase === 'posting') {
       addLog({
-        icon: <X size={11} className="text-sky-400" />,
+        icon: <XIcon size={11} className="text-sky-400" />,
         text: 'Posting to X (Twitter)…',
         color: 'text-white/40',
       })
@@ -194,7 +192,7 @@ export function HeroAnimation() {
                 textShadow: isCrossed ? '0 0 40px rgba(99,102,241,0.5)' : 'none',
               }}
             >
-              {formatMRR(mrr)}
+              {fmtMoney(mrr)}
             </p>
           </div>
 
@@ -267,7 +265,7 @@ export function HeroAnimation() {
               <p className="text-xs text-white/30">@mysaas · just now</p>
             </div>
           </div>
-          <X size={13} className="text-white/25" />
+          <XIcon size={13} className="text-white/25" />
         </div>
 
         <div className="px-4 py-3">

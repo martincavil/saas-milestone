@@ -16,6 +16,7 @@ import {
   FounderNote,
 } from "@/components/landing/trust-sections";
 import { MilestoneCategoriesSection } from "@/components/landing/milestone-categories";
+import { PricingSection } from "@/components/landing/pricing-section";
 
 export default function LandingPage() {
   return (
@@ -308,113 +309,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section
-        id="pricing"
-        className="border-t border-gray-100 bg-gray-50 p-8 md:py-16"
-      >
-        <div className="mx-auto max-w-5xl px-5">
-          <ScrollReveal className="mb-14 max-w-lg">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
-              Pricing
-            </p>
-            <h2 className="text-4xl font-bold text-gray-900 font-poppins">
-              Free until you make money.
-              <br />
-              Then $9/month. That's it.
-            </h2>
-          </ScrollReveal>
-
-          {/* Launch offer banner */}
-          <ScrollReveal className="mb-6 max-w-2xl mx-auto">
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 flex items-center gap-4">
-              <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-amber-100 text-lg">🚀</div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-amber-900">Launch offer — first 50 customers only</p>
-                <p className="text-xs text-amber-700 mt-0.5">Lock in <strong>$49/year forever</strong> (save 55% vs monthly). Only <strong>50 spots</strong> available at this price. No catch.</p>
-              </div>
-              <Link href="/login" className="flex-shrink-0 rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-white hover:bg-amber-400 transition-colors whitespace-nowrap">
-                Claim $49/yr →
-              </Link>
-            </div>
-          </ScrollReveal>
-
-          <ScrollRevealGrid
-            className="grid max-w-2xl gap-4 md:grid-cols-3 mx-auto"
-            staggerDelay={0.1}
-          >
-            {/* Free */}
-            <div className="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-              <p className="mb-1 text-sm font-medium text-gray-500">Free</p>
-              <div className="mb-1 flex items-end gap-1">
-                <span className="text-4xl font-extrabold text-gray-900 font-poppins">$0</span>
-              </div>
-              <p className="mb-5 text-sm text-gray-400">While your MRR is under $100</p>
-              <ul className="mb-6 space-y-2.5 flex-1">
-                {["All 6 milestone categories", "Multiple Stripe accounts", "Auto-post to X + LinkedIn", "Consolidated MRR/ARR view", "Full milestone history"].map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 text-sm text-gray-600">
-                    <Check size={13} className="flex-shrink-0 text-green-500" strokeWidth={2.5} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/login" className="btn-secondary block w-full justify-center">Get started</Link>
-            </div>
-
-            {/* Launch offer — highlighted */}
-            <div className="flex flex-col relative overflow-hidden rounded-2xl border-2 border-amber-400 bg-white p-6 shadow-lg">
-              <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400" />
-              <div className="absolute right-4 top-3">
-                <span className="rounded-full bg-amber-400 px-2 py-0.5 text-xs font-bold text-white">50 spots left</span>
-              </div>
-              <p className="mb-1 text-sm font-bold text-amber-600">Launch offer</p>
-              <div className="mb-1 flex items-end gap-1">
-                <span className="text-4xl font-extrabold text-gray-900 font-poppins">$49</span>
-                <span className="mb-1.5 text-sm text-gray-400">/year</span>
-              </div>
-              <p className="mb-1 text-xs text-gray-400 line-through">$108/year</p>
-              <p className="mb-5 text-xs font-semibold text-amber-600">Locked forever · save 55%</p>
-              <ul className="mb-6 space-y-2.5 flex-1">
-                {["Everything in Pro", "Price locked for life", "Priority access to new features", "Founding customer badge"].map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 text-sm text-gray-700">
-                    <Check size={13} className="flex-shrink-0 text-amber-500" strokeWidth={2.5} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/login" className="flex items-center justify-center gap-2 rounded-xl bg-amber-500 py-2.5 text-sm font-bold text-white hover:bg-amber-400 transition-colors">
-                Claim your spot
-              </Link>
-            </div>
-
-            {/* Pro monthly */}
-            <div className="flex flex-col relative overflow-hidden rounded-2xl bg-gray-900 p-6 text-white shadow-xl">
-              <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500" />
-              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-indigo-600/10" />
-              <div className="relative flex flex-col h-full">
-                <p className="mb-1 text-sm font-medium text-gray-400">Pro</p>
-                <div className="mb-1 flex items-end gap-1">
-                  <span className="text-4xl font-extrabold text-white font-poppins">$9</span>
-                  <span className="mb-1.5 text-sm text-gray-400">/mo</span>
-                </div>
-                <p className="mb-1 text-xs text-gray-500">or $79/year <span className="text-indigo-400">— save 27%</span></p>
-                <p className="mb-5 text-sm text-gray-400">After $100 MRR</p>
-                <ul className="mb-6 space-y-2.5 flex-1">
-                  {["Everything in free", "Per-product MRR breakdown", "MRR share % per SaaS", "Priority support"].map((f) => (
-                    <li key={f} className="flex items-center gap-2.5 text-sm text-gray-300">
-                      <Check size={13} className="flex-shrink-0 text-indigo-400" strokeWidth={2.5} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/login" className="btn-primary block w-full justify-center" style={{ background: "#fff", color: "#111827" }}>
-                  Start free
-                </Link>
-              </div>
-            </div>
-          </ScrollRevealGrid>
-        </div>
-      </section>
+      <PricingSection />
 
       <TestimonialsSection />
       <BuildInPublicSection />

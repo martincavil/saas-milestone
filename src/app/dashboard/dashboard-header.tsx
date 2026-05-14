@@ -33,7 +33,7 @@ export function DashboardHeader({ email, isSubscribed }: DashboardHeaderProps) {
       <div className="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-lg">🚀</span>
-          <span className="text-sm font-semibold text-white">Milestone MRR</span>
+          <span className="text-sm font-semibold text-white">saas-milestone</span>
           {isSubscribed && (
             <span className="rounded-full bg-indigo-500/20 border border-indigo-500/30 px-2 py-0.5 text-xs text-indigo-400">
               Pro

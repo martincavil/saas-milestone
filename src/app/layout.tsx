@@ -5,10 +5,10 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Milestone MRR — Celebrate your SaaS milestones automatically',
+  title: 'saas-milestone — Celebrate your SaaS milestones automatically',
   description: 'Connect Stripe, hit a milestone, auto-post to X. Free until $100 MRR.',
   openGraph: {
-    title: 'Milestone MRR',
+    title: 'saas-milestone',
     description: 'Auto-post your MRR milestones to X (Twitter)',
     type: 'website',
   },

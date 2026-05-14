@@ -221,7 +221,7 @@ export async function generateMilestoneImage(
             display: 'flex',
           },
         },
-        'milestone.so · free until $100 MRR'
+        'saas-milestone · free until $100 MRR'
       )
     )
   )

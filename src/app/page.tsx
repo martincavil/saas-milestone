@@ -21,7 +21,7 @@ import { PricingSection } from "@/components/landing/pricing-section";
 export default function LandingPage() {
   return (
     <div
-      className="min-h-screen bg-white dark:bg-[#0a0a0a] transition-colors duration-200"
+      className="min-h-screen bg-white"
       style={{ fontFamily: "var(--font-nunito)" }}
     >
       <Navbar />
@@ -76,7 +76,7 @@ export default function LandingPage() {
         {/* Dot grid background */}
         <div className="dot-grid absolute inset-0 opacity-40" />
         {/* Soft fade to white at bottom so sections connect cleanly */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-white dark:to-[#0a0a0a]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-white" />
 
         <div className="relative mx-auto max-w-5xl px-5 pt-20 pb-12">
           <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -93,7 +93,7 @@ export default function LandingPage() {
 
               {/* Headline */}
               <h1
-                className="hero-fade-2 mb-4 text-[2.75rem] font-extrabold leading-[1.08] tracking-tight text-gray-900 dark:text-white lg:text-5xl"
+                className="hero-fade-2 mb-4 text-[2.75rem] font-extrabold leading-[1.08] tracking-tight text-gray-900 lg:text-5xl"
                 style={{ fontFamily: "var(--font-poppins)" }}
               >
                 Track your wins.
@@ -153,13 +153,13 @@ export default function LandingPage() {
         <div className="mx-auto max-w-5xl px-5">
           <ScrollReveal className="mb-14 max-w-lg">
             <p
-              className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400"
+              className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600"
               style={{ fontFamily: "var(--font-nunito)" }}
             >
               How it works
             </p>
             <h2
-              className="text-4xl font-bold text-gray-900 dark:text-white"
+              className="text-4xl font-bold text-gray-900"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
               Three steps. Done.
@@ -217,7 +217,7 @@ export default function LandingPage() {
         <div className="mx-auto max-w-5xl px-5">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <ScrollReveal direction="left">
-              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
                 Auto-generated visuals
               </p>
               <h2
@@ -228,7 +228,7 @@ export default function LandingPage() {
                 <br />
                 auto-posted for you
               </h2>
-              <p className="mb-6 text-gray-500 dark:text-white/50 leading-relaxed">
+              <p className="mb-6 text-gray-500 leading-relaxed">
                 When you hit a milestone, a visual is generated and posted to X
                 and LinkedIn without you touching anything. No screenshot, no
                 Canva, no "I should tweet about this later" that never happens.
@@ -363,7 +363,7 @@ export default function LandingPage() {
               </div>
               <span className="text-sm font-semibold text-white font-poppins">saas-milestone</span>
             </div>
-            <p className="text-xs text-gray-500 dark:text-white/50 leading-relaxed mb-4">
+            <p className="text-xs text-gray-500 leading-relaxed mb-4">
               Track every founder milestone.<br />Post it to X automatically.
             </p>
             <div className="flex items-center gap-3">

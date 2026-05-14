@@ -809,7 +809,7 @@
             <div class="position-relative HeaderMenu-link-wrap d-lg-inline-block">
               <a
                 href="/login?return_to=https%3A%2F%2Fgithub.com%2Fgoogle%2Ffonts%2Fraw%2Fmain%2Fofl%2Finter%2FInter%255Bslnt%252Cwght%255D.ttf"
-                class="HeaderMenu-link HeaderMenu-link--sign-in HeaderMenu-button flex-shrink-0 no-underline d-none d-lg-inline-flex border border-lg-0 rounded px-2 py-1"
+                class="HeaderMenu-link HeaderMenu-link--sign-in HeaderMenu-button shrink-0 no-underline d-none d-lg-inline-flex border border-lg-0 rounded px-2 py-1"
                 style="margin-left: 12px;"
                 data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/google/fonts/raw/main/ofl/inter/Inter%5Bslnt%2Cwght%5D.ttf&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ccc317cabf192b6cadd72cbcb67d4eaabb3874127e8bd43a567552307b912a48"
                 data-analytics-event="{&quot;category&quot;:&quot;Marketing nav&quot;,&quot;action&quot;:&quot;click to go to homepage&quot;,&quot;label&quot;:&quot;ref_page:Marketing;ref_cta:Sign in;ref_loc:Header&quot;}"
@@ -860,7 +860,7 @@
 </div></div>            </div>
 
               <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2Fgoogle%2Ffonts%2Fraw%2Fmain%2Fofl%2Finter%2FInter%255Bslnt%252Cwght%255D.ttf&amp;source=header"
-                class="HeaderMenu-link HeaderMenu-link--sign-up HeaderMenu-button flex-shrink-0 d-flex d-lg-inline-flex no-underline border color-border-default rounded px-2 py-1"
+                class="HeaderMenu-link HeaderMenu-link--sign-up HeaderMenu-button shrink-0 d-flex d-lg-inline-flex no-underline border color-border-default rounded px-2 py-1"
                 data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/google/fonts/raw/main/ofl/inter/Inter%5Bslnt%2Cwght%5D.ttf&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ccc317cabf192b6cadd72cbcb67d4eaabb3874127e8bd43a567552307b912a48"
                 data-analytics-event="{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/google/fonts/raw/main/ofl/inter/Inter%5Bslnt%2Cwght%5D.ttf;ref_cta:Sign up;ref_loc:header logged out&quot;}"
               >

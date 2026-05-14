@@ -422,7 +422,7 @@ export function MilestoneCategoriesSection() {
 
                       {/* Thresholds preview */}
                       {active && (
-                        <div className="hidden sm:flex items-center gap-1 flex-shrink-0">
+                        <div className="hidden sm:flex items-center gap-1 shrink-0">
                           {c.thresholds.slice(0, 4).map((t) => (
                             <span
                               key={t}

@@ -197,7 +197,7 @@ export function BuildInPublicSection() {
                 },
               ].map((item) => (
                 <li key={item.title} className="flex items-start gap-3">
-                  <div className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-400 mt-2" />
+                  <div className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-400 mt-2" />
                   <div>
                     <p className="text-sm font-semibold text-gray-900">
                       {item.title}
@@ -344,7 +344,7 @@ export function SecuritySection() {
                 },
               ].map((item) => (
                 <li key={item.title} className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-indigo-50">
+                  <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-indigo-50">
                     {item.icon}
                   </div>
                   <div>
@@ -482,7 +482,7 @@ export function HowItWorksDeepSection() {
               key={s.step}
               className="group flex items-start gap-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all"
             >
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-indigo-50 group-hover:bg-indigo-100 transition-colors">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 group-hover:bg-indigo-100 transition-colors">
                 {s.icon}
               </div>
               <div className="flex-1">
@@ -562,7 +562,7 @@ export function FAQSection() {
                 {item.q}
                 <ChevronDown
                   size={16}
-                  className="flex-shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+                  className="shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
                 />
               </summary>
               <div className="border-t border-gray-100 px-6 pb-5 pt-4 text-sm text-gray-500 leading-relaxed">

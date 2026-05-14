@@ -245,7 +245,7 @@ export default function LandingPage() {
                     key={f}
                     className="flex items-center gap-3 text-sm text-gray-600"
                   >
-                    <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100">
+                    <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-100">
                       <Check
                         size={11}
                         className="text-indigo-600"

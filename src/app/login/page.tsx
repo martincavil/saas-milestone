@@ -90,7 +90,7 @@ export default async function LoginPage({
                 key={f}
                 className="flex items-center gap-2.5 text-sm text-gray-400"
               >
-                <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500/20">
+                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-500/20">
                   <Check
                     size={11}
                     className="text-indigo-400"

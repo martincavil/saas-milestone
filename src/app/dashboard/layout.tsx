@@ -17,9 +17,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const isSubscribed = sub?.status === 'active'
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#0a0a0a]" style={{ fontFamily: 'var(--font-nunito)' }}>
+    <div className="flex h-screen overflow-hidden bg-white dark:bg-[#0a0a0a] transition-colors duration-200" style={{ fontFamily: 'var(--font-nunito)' }}>
       <Sidebar email={user.email!} isSubscribed={isSubscribed} />
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-[#0a0a0a] transition-colors duration-200">
         {children}
       </main>
     </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { StatCard, HorizontalBars } from "@/components/dashboard/charts";
+import { ChartsPanel } from "@/components/dashboard/charts-panel";
 import {
   MILESTONE_CONFIGS,
   type MilestoneCategory,
@@ -244,6 +245,17 @@ export function OverviewClient({
               </p>
             </div>
           )}
+        </section>
+      )}
+
+      {/* ── Interactive charts ── */}
+      {show("mrr") && mrrData?.connected && (
+        <section>
+          <ChartsPanel
+            accounts={mrrData.accounts ?? []}
+            totalMRR={mrrData.totalMRR ?? 0}
+            milestones={milestones}
+          />
         </section>
       )}
 

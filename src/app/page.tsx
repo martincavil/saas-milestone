@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 import {
   Key,
   Clock,
@@ -9,26 +9,64 @@ import {
   X,
   BarChart2,
   Bell,
-} from 'lucide-react'
-import { HeroAnimation } from '@/components/landing/hero-animation'
-import { ScrollReveal, ScrollRevealGrid } from '@/components/landing/scroll-reveal'
-import { Navbar } from '@/components/landing/navbar'
+} from "lucide-react";
+import { HeroAnimation } from "@/components/landing/hero-animation";
+import {
+  ScrollReveal,
+  ScrollRevealGrid,
+} from "@/components/landing/scroll-reveal";
+import { Navbar } from "@/components/landing/navbar";
+import { SecuritySection, HowItWorksDeepSection, FAQSection, StatsBar, TestimonialsSection, BuildInPublicSection, FounderNote } from "@/components/landing/trust-sections";
 
 const MILESTONES = [
-  { amount: 1,     label: '$1',   icon: <TrendingUp size={16} className="text-indigo-400" /> },
-  { amount: 10,    label: '$10',  icon: <TrendingUp size={16} className="text-indigo-400" /> },
-  { amount: 50,    label: '$50',  icon: <TrendingUp size={16} className="text-indigo-400" /> },
-  { amount: 100,   label: '$100', icon: <TrendingUp size={16} className="text-indigo-400" /> },
-  { amount: 500,   label: '$500', icon: <BarChart2  size={16} className="text-violet-400" /> },
-  { amount: 1000,  label: '$1k',  icon: <BarChart2  size={16} className="text-violet-400" /> },
-  { amount: 5000,  label: '$5k',  icon: <Zap        size={16} className="text-amber-400"  /> },
-  { amount: 10000, label: '$10k', icon: <Zap        size={16} className="text-amber-400"  /> },
-]
+  {
+    amount: 1,
+    label: "$1",
+    icon: <TrendingUp size={16} className="text-indigo-400" />,
+  },
+  {
+    amount: 10,
+    label: "$10",
+    icon: <TrendingUp size={16} className="text-indigo-400" />,
+  },
+  {
+    amount: 50,
+    label: "$50",
+    icon: <TrendingUp size={16} className="text-indigo-400" />,
+  },
+  {
+    amount: 100,
+    label: "$100",
+    icon: <TrendingUp size={16} className="text-indigo-400" />,
+  },
+  {
+    amount: 500,
+    label: "$500",
+    icon: <BarChart2 size={16} className="text-violet-400" />,
+  },
+  {
+    amount: 1000,
+    label: "$1k",
+    icon: <BarChart2 size={16} className="text-violet-400" />,
+  },
+  {
+    amount: 5000,
+    label: "$5k",
+    icon: <Zap size={16} className="text-amber-400" />,
+  },
+  {
+    amount: 10000,
+    label: "$10k",
+    icon: <Zap size={16} className="text-amber-400" />,
+  },
+];
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'var(--font-nunito)' }}>
-
+    <div
+      className="min-h-screen bg-white"
+      style={{ fontFamily: "var(--font-nunito)" }}
+    >
       <Navbar />
       {/* Spacer for fixed navbar */}
       <div className="h-[60px]" />
@@ -36,26 +74,45 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         {/* Animated gradient orbs */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+        >
           {/* Orb 1 — indigo, top-left */}
           <div
             className="orb-1 absolute -left-32 -top-32 h-[520px] w-[520px] rounded-full opacity-30"
-            style={{ background: 'radial-gradient(circle at center, #6366f1 0%, transparent 70%)', filter: 'blur(64px)' }}
+            style={{
+              background:
+                "radial-gradient(circle at center, #6366f1 0%, transparent 70%)",
+              filter: "blur(64px)",
+            }}
           />
           {/* Orb 2 — violet, top-right */}
           <div
             className="orb-2 absolute -right-40 top-0 h-[480px] w-[480px] rounded-full opacity-25"
-            style={{ background: 'radial-gradient(circle at center, #8b5cf6 0%, transparent 70%)', filter: 'blur(72px)' }}
+            style={{
+              background:
+                "radial-gradient(circle at center, #8b5cf6 0%, transparent 70%)",
+              filter: "blur(72px)",
+            }}
           />
           {/* Orb 3 — cyan, bottom-right */}
           <div
             className="orb-3 absolute bottom-0 right-1/4 h-[360px] w-[360px] rounded-full opacity-20"
-            style={{ background: 'radial-gradient(circle at center, #06b6d4 0%, transparent 70%)', filter: 'blur(56px)' }}
+            style={{
+              background:
+                "radial-gradient(circle at center, #06b6d4 0%, transparent 70%)",
+              filter: "blur(56px)",
+            }}
           />
           {/* Orb 4 — indigo soft, center */}
           <div
             className="orb-4 absolute left-1/3 top-1/4 h-[300px] w-[300px] rounded-full opacity-15"
-            style={{ background: 'radial-gradient(circle at center, #a5b4fc 0%, transparent 70%)', filter: 'blur(80px)' }}
+            style={{
+              background:
+                "radial-gradient(circle at center, #a5b4fc 0%, transparent 70%)",
+              filter: "blur(80px)",
+            }}
           />
         </div>
 
@@ -66,19 +123,21 @@ export default function LandingPage() {
 
         <div className="relative mx-auto max-w-5xl px-5 pt-20 pb-12">
           <div className="grid items-center gap-12 lg:grid-cols-2">
-
             {/* Left — copy */}
             <div>
               {/* Badge */}
               <div className="hero-fade-1 mb-5 inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3.5 py-1 text-xs font-medium text-indigo-600">
-                <span className="flex h-1.5 w-1.5 rounded-full bg-indigo-500" style={{ animation: 'pulse-dot 1.5s ease-in-out infinite' }} />
+                <span
+                  className="flex h-1.5 w-1.5 rounded-full bg-indigo-500"
+                  style={{ animation: "pulse-dot 1.5s ease-in-out infinite" }}
+                />
                 Free under $100 MRR
               </div>
 
               {/* Headline */}
               <h1
                 className="hero-fade-2 mb-4 text-[2.75rem] font-extrabold leading-[1.08] tracking-tight text-gray-900 lg:text-5xl"
-                style={{ fontFamily: 'var(--font-poppins)' }}
+                style={{ fontFamily: "var(--font-poppins)" }}
               >
                 Stripe hit $1k.
                 <br />
@@ -90,20 +149,17 @@ export default function LandingPage() {
               </h1>
 
               <p className="hero-fade-3 mb-8 max-w-md text-[1.05rem] leading-relaxed text-gray-500">
-                Paste a Stripe key. When your MRR crosses $1, $10, $1k — a card posts to X within the hour.
-                Set up once, runs forever.
+                Paste a Stripe key. When your MRR crosses $1, $10, $1k — a card
+                posts to X within the hour. Set up once, runs forever.
               </p>
 
               {/* CTAs */}
               <div className="hero-fade-4 flex flex-wrap items-center gap-3">
-                <Link
-                  href="/login"
-                  className="flex items-center gap-2 rounded-xl bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-gray-700 transition-colors shadow-sm"
-                >
+                <Link href="/login" className="btn-primary">
                   Connect Stripe for free
                   <ArrowRight size={15} />
                 </Link>
-                <a href="#how" className="rounded-xl border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-900 transition-colors">
+                <a href="#how" className="btn-secondary">
                   See how it works
                 </a>
               </div>
@@ -111,11 +167,17 @@ export default function LandingPage() {
               {/* Social proof */}
               <div className="hero-fade-5 mt-8 flex items-center gap-3">
                 <div className="flex items-center -space-x-1.5">
-                  {['#4f46e5','#7c3aed','#0891b2','#059669','#d97706'].map((color, i) => (
-                    <div key={i} className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white text-white text-xs font-bold" style={{ background: color }}>
-                      {String.fromCharCode(65 + i)}
-                    </div>
-                  ))}
+                  {["#4f46e5", "#7c3aed", "#0891b2", "#059669", "#d97706"].map(
+                    (color, i) => (
+                      <div
+                        key={i}
+                        className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white text-white text-xs font-bold"
+                        style={{ background: color }}
+                      >
+                        {String.fromCharCode(65 + i)}
+                      </div>
+                    ),
+                  )}
                 </div>
                 <p className="text-sm text-gray-400">
                   Indie founders building in public
@@ -129,49 +191,54 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Logos / trust strip */}
-      <div className="border-y border-gray-100 bg-gray-50 py-4">
-        <div className="mx-auto max-w-5xl px-5">
-          <p className="text-center text-xs font-medium uppercase tracking-widest text-gray-400">
-            Works with any Stripe subscription product
-          </p>
-        </div>
-      </div>
+      <StatsBar />
 
       {/* How it works */}
       <section id="how" className="py-24">
         <div className="mx-auto max-w-5xl px-5">
           <ScrollReveal className="mb-14 max-w-lg">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600" style={{ fontFamily: 'var(--font-nunito)' }}>
+            <p
+              className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600"
+              style={{ fontFamily: "var(--font-nunito)" }}
+            >
               How it works
             </p>
-            <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
+            <h2
+              className="text-4xl font-bold text-gray-900"
+              style={{ fontFamily: "var(--font-poppins)" }}
+            >
               Three steps. Then you forget it exists.
             </h2>
           </ScrollReveal>
 
-          <ScrollRevealGrid className="grid gap-6 md:grid-cols-3" staggerDelay={0.12}>
+          <ScrollRevealGrid
+            className="grid gap-6 md:grid-cols-3"
+            staggerDelay={0.12}
+          >
             {[
               {
                 icon: <Key size={22} className="text-indigo-600" />,
-                num: '01',
-                title: 'Paste one API key',
-                desc: 'Create a restricted Stripe key with read-only access to subscriptions. Paste it in. We never touch your money.',
+                num: "01",
+                title: "Paste one API key",
+                desc: "Create a restricted Stripe key with read-only access to subscriptions. Paste it in. We never touch your money.",
               },
               {
                 icon: <Clock size={22} className="text-indigo-600" />,
-                num: '02',
-                title: 'We check every hour',
-                desc: 'A Vercel cron job reads your active subscriptions and computes MRR. No polling from your end.',
+                num: "02",
+                title: "We check every hour",
+                desc: "A Vercel cron job reads your active subscriptions and computes MRR. No polling from your end.",
               },
               {
                 icon: <X size={22} className="text-indigo-600" />,
-                num: '03',
-                title: 'Card posts to X',
-                desc: 'A 1200×630 card with your SaaS name, the number, and your progress fires to your timeline within 60 minutes.',
+                num: "03",
+                title: "Card posts to X",
+                desc: "A 1200×630 card with your SaaS name, the number, and your progress fires to your timeline within 60 minutes.",
               },
             ].map((item) => (
-              <div key={item.num} className="group relative rounded-2xl border border-gray-200 bg-white p-7 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all">
+              <div
+                key={item.num}
+                className="group relative rounded-2xl border border-gray-200 bg-white p-7 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all"
+              >
                 <div className="absolute right-5 top-5 text-xs font-mono font-bold text-gray-200 group-hover:text-indigo-100 transition-colors">
                   {item.num}
                 </div>
@@ -179,7 +246,9 @@ export default function LandingPage() {
                   {item.icon}
                 </div>
                 <h3 className="mb-2 font-bold text-gray-900">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-gray-500">{item.desc}</p>
+                <p className="text-sm leading-relaxed text-gray-500">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </ScrollRevealGrid>
@@ -194,17 +263,25 @@ export default function LandingPage() {
               <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
                 8 thresholds
               </p>
-              <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
+              <h2
+                className="text-4xl font-bold text-gray-900"
+                style={{ fontFamily: "var(--font-poppins)" }}
+              >
                 Every crossing
-                <br />gets a post.
+                <br />
+                gets a post.
               </h2>
             </div>
             <p className="text-gray-500 lg:text-right">
-              From first dollar to $10k. Each one hits your timeline with a custom card.
+              From first dollar to $10k. Each one hits your timeline with a
+              custom card.
             </p>
           </ScrollReveal>
 
-          <ScrollRevealGrid className="grid grid-cols-4 gap-3 sm:grid-cols-8" staggerDelay={0.06}>
+          <ScrollRevealGrid
+            className="grid grid-cols-4 gap-3 sm:grid-cols-8"
+            staggerDelay={0.06}
+          >
             {MILESTONES.map((m) => (
               <div
                 key={m.amount}
@@ -213,7 +290,9 @@ export default function LandingPage() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 group-hover:bg-indigo-50 transition-colors">
                   {m.icon}
                 </div>
-                <span className="text-sm font-bold text-gray-900">{m.label}</span>
+                <span className="text-sm font-bold text-gray-900">
+                  {m.label}
+                </span>
               </div>
             ))}
           </ScrollRevealGrid>
@@ -228,23 +307,37 @@ export default function LandingPage() {
               <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
                 The card
               </p>
-              <h2 className="mb-5 text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
+              <h2
+                className="mb-5 text-4xl font-bold text-gray-900"
+                style={{ fontFamily: "var(--font-poppins)" }}
+              >
                 What posts
-                <br />to your timeline
+                <br />
+                to your timeline
               </h2>
               <p className="mb-6 text-gray-500 leading-relaxed">
-                1200×630 PNG. Dark background, gradient accent bar, your SaaS name, the MRR number, and a progress bar toward the next threshold. Posted with #buildinpublic so the right people see it.
+                1200×630 PNG. Dark background, gradient accent bar, your SaaS
+                name, the MRR number, and a progress bar toward the next
+                threshold. Posted with #buildinpublic so the right people see
+                it.
               </p>
               <ul className="space-y-3">
                 {[
-                  'Your SaaS name, front and center',
-                  'Progress toward the next milestone',
-                  'Date and branding on every card',
-                  '#buildinpublic hashtags auto-added',
+                  "Your SaaS name, front and center",
+                  "Progress toward the next milestone",
+                  "Date and branding on every card",
+                  "#buildinpublic hashtags auto-added",
                 ].map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-sm text-gray-600">
+                  <li
+                    key={f}
+                    className="flex items-center gap-3 text-sm text-gray-600"
+                  >
                     <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100">
-                      <Check size={11} className="text-indigo-600" strokeWidth={2.5} />
+                      <Check
+                        size={11}
+                        className="text-indigo-600"
+                        strokeWidth={2.5}
+                      />
                     </div>
                     {f}
                   </li>
@@ -254,82 +347,114 @@ export default function LandingPage() {
 
             {/* Card mockup — static version */}
             <ScrollReveal direction="right" delay={0.1}>
-            <div className="relative">
-              <div className="absolute inset-0 -m-4 rounded-3xl bg-gradient-to-br from-indigo-50 to-violet-50" />
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-gray-200">
-                <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500" />
-                <div className="bg-[#0a0a0a] p-8">
-                  <div className="mb-5 flex items-center justify-between">
-                    <span className="text-xs font-mono uppercase tracking-widest text-white/30">My SaaS</span>
-                    <div className="flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1">
-                      <div className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
-                      <span className="text-xs text-indigo-300">Milestone Reached</span>
+              <div className="relative">
+                <div className="absolute inset-0 -m-4 rounded-3xl bg-gradient-to-br from-indigo-50 to-violet-50" />
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-gray-200">
+                  <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500" />
+                  <div className="bg-[#0a0a0a] p-8">
+                    <div className="mb-5 flex items-center justify-between">
+                      <span className="text-xs font-mono uppercase tracking-widest text-white/30">
+                        My SaaS
+                      </span>
+                      <div className="flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1">
+                        <div className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+                        <span className="text-xs text-indigo-300">
+                          Milestone Reached
+                        </span>
+                      </div>
                     </div>
+                    <p
+                      className="mb-1 text-[4.5rem] font-extrabold leading-none tracking-tighter text-white"
+                      style={{ fontFamily: "var(--font-poppins)" }}
+                    >
+                      $1k
+                    </p>
+                    <p className="mb-6 text-sm text-white/40">
+                      Monthly Recurring Revenue
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-xs text-white/30">
+                        <span>Progress to $5k</span>
+                        <span>20%</span>
+                      </div>
+                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/8">
+                        <div className="h-full w-1/5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500" />
+                      </div>
+                      <div className="flex justify-between text-xs text-white/20">
+                        <span>$1</span>
+                        <span>$10k</span>
+                      </div>
+                    </div>
+                    <p className="mt-6 text-right text-xs text-white/15">
+                      saas-milestone · free until $100 MRR
+                    </p>
                   </div>
-                  <p
-                    className="mb-1 text-[4.5rem] font-extrabold leading-none tracking-tighter text-white"
-                    style={{ fontFamily: 'var(--font-poppins)' }}
-                  >
-                    $1k
-                  </p>
-                  <p className="mb-6 text-sm text-white/40">Monthly Recurring Revenue</p>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-xs text-white/30">
-                      <span>Progress to $5k</span>
-                      <span>20%</span>
-                    </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/8">
-                      <div className="h-full w-1/5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500" />
-                    </div>
-                    <div className="flex justify-between text-xs text-white/20">
-                      <span>$1</span>
-                      <span>$10k</span>
-                    </div>
-                  </div>
-                  <p className="mt-6 text-right text-xs text-white/15">saas-milestone · free until $100 MRR</p>
                 </div>
               </div>
-            </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="border-t border-gray-100 bg-gray-50 py-24">
+      <section
+        id="pricing"
+        className="border-t border-gray-100 bg-gray-50 py-24"
+      >
         <div className="mx-auto max-w-5xl px-5">
           <ScrollReveal className="mb-14 max-w-lg">
             <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
               Pricing
             </p>
-            <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
+            <h2
+              className="text-4xl font-bold text-gray-900"
+              style={{ fontFamily: "var(--font-poppins)" }}
+            >
               Free until you're
-              <br />making real money.
+              <br />
+              making real money.
             </h2>
           </ScrollReveal>
 
-          <ScrollRevealGrid className="grid max-w-2xl gap-4 md:grid-cols-2" staggerDelay={0.15}>
+          <ScrollRevealGrid
+            className="grid max-w-2xl gap-4 md:grid-cols-2 mx-auto"
+            staggerDelay={0.15}
+          >
             {/* Free */}
             <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
               <p className="mb-1 text-sm font-medium text-gray-500">Free</p>
               <div className="mb-1 flex items-end gap-1">
-                <span className="text-5xl font-extrabold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>$0</span>
+                <span
+                  className="text-5xl font-extrabold text-gray-900"
+                  style={{ fontFamily: "var(--font-poppins)" }}
+                >
+                  $0
+                </span>
               </div>
-              <p className="mb-7 text-sm text-gray-400">While MRR is under $100</p>
+              <p className="mb-7 text-sm text-gray-400">
+                While MRR is under $100
+              </p>
               <ul className="mb-8 space-y-3">
                 {[
-                  'All 8 milestones tracked',
-                  'Auto-post to X',
-                  '1200×630 card per milestone',
-                  'Hourly MRR checks',
+                  "All 8 milestones tracked",
+                  "Auto-post to X",
+                  "1200×630 card per milestone",
+                  "Hourly MRR checks",
                 ].map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 text-sm text-gray-600">
-                    <Check size={14} className="flex-shrink-0 text-green-500" strokeWidth={2.5} />
+                  <li
+                    key={f}
+                    className="flex items-center gap-2.5 text-sm text-gray-600"
+                  >
+                    <Check
+                      size={14}
+                      className="flex-shrink-0 text-green-500"
+                      strokeWidth={2.5}
+                    />
                     {f}
                   </li>
                 ))}
               </ul>
-              <Link href="/login" className="block w-full rounded-xl border border-gray-200 py-2.5 text-center text-sm font-semibold text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-colors">
+              <Link href="/login" className="btn-secondary block w-full justify-center">
                 Get started
               </Link>
             </div>
@@ -342,24 +467,38 @@ export default function LandingPage() {
               <div className="relative">
                 <p className="mb-1 text-sm font-medium text-gray-400">Pro</p>
                 <div className="mb-1 flex items-end gap-1">
-                  <span className="text-5xl font-extrabold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>$9</span>
+                  <span
+                    className="text-5xl font-extrabold text-white"
+                    style={{ fontFamily: "var(--font-poppins)" }}
+                  >
+                    $9
+                  </span>
                   <span className="mb-2 text-sm text-gray-400">/mo</span>
                 </div>
-                <p className="mb-7 text-sm text-gray-400">After $100 MRR — when it makes sense</p>
+                <p className="mb-7 text-sm text-gray-400">
+                  After $100 MRR — when it makes sense
+                </p>
                 <ul className="mb-8 space-y-3">
                   {[
-                    'Everything in Free',
-                    'Unlimited milestone posts',
-                    'Priority hourly checks',
-                    'LinkedIn posting (soon)',
+                    "Everything in Free",
+                    "Unlimited milestone posts",
+                    "Priority hourly checks",
+                    "LinkedIn posting (soon)",
                   ].map((f) => (
-                    <li key={f} className="flex items-center gap-2.5 text-sm text-gray-300">
-                      <Check size={14} className="flex-shrink-0 text-indigo-400" strokeWidth={2.5} />
+                    <li
+                      key={f}
+                      className="flex items-center gap-2.5 text-sm text-gray-300"
+                    >
+                      <Check
+                        size={14}
+                        className="flex-shrink-0 text-indigo-400"
+                        strokeWidth={2.5}
+                      />
                       {f}
                     </li>
                   ))}
                 </ul>
-                <Link href="/login" className="relative block w-full rounded-xl bg-white py-2.5 text-center text-sm font-semibold text-gray-900 hover:bg-gray-100 transition-colors">
+                <Link href="/login" className="btn-primary block w-full justify-center" style={{ background: '#fff', color: '#111827' }}>
                   Start free, upgrade when ready
                 </Link>
               </div>
@@ -367,6 +506,13 @@ export default function LandingPage() {
           </ScrollRevealGrid>
         </div>
       </section>
+
+      <TestimonialsSection />
+      <BuildInPublicSection />
+      <HowItWorksDeepSection />
+      <SecuritySection />
+      <FounderNote />
+      <FAQSection />
 
       {/* Final CTA */}
       <section className="bg-gray-900 py-24">
@@ -378,18 +524,16 @@ export default function LandingPage() {
           </div>
           <h2
             className="mb-4 text-4xl font-extrabold text-white"
-            style={{ fontFamily: 'var(--font-poppins)' }}
+            style={{ fontFamily: "var(--font-poppins)" }}
           >
             Your first dollar is out there.
-            <br />Go get it.
+            <br />
+            Go get it.
           </h2>
           <p className="mb-8 text-gray-400">
             Paste a Stripe key. That's the whole setup.
           </p>
-          <Link
-            href="/login"
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-100 transition-colors"
-          >
+          <Link href="/login" className="btn-primary" style={{ background: '#fff', color: '#111827', padding: '12px 28px' }}>
             Connect Stripe for free
             <ArrowRight size={15} />
           </Link>
@@ -403,13 +547,24 @@ export default function LandingPage() {
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-indigo-600">
               <Zap size={12} className="text-white" fill="white" />
             </div>
-            <span className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>saas-milestone</span>
+            <span
+              className="text-sm font-semibold text-white"
+              style={{ fontFamily: "var(--font-poppins)" }}
+            >
+              saas-milestone
+            </span>
           </div>
-          <p className="text-xs text-gray-500">Built with Next.js, Supabase & Stripe · © 2025</p>
-          <Link href="/login" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Sign in</Link>
+          <p className="text-xs text-gray-500">
+            Built with Next.js, Supabase & Stripe · © 2025
+          </p>
+          <Link
+            href="/login"
+            className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+          >
+            Sign in
+          </Link>
         </div>
       </footer>
-
     </div>
-  )
+  );
 }

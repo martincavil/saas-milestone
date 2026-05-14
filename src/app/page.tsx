@@ -1,65 +1,139 @@
-import Image from "next/image";
+import Link from 'next/link'
 
-export default function Home() {
+const MILESTONES = [1, 10, 50, 100, 500, 1000, 5000, 10000]
+
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
+      {/* Nav */}
+      <nav className="border-b border-white/8 px-6 h-14 flex items-center justify-between max-w-5xl mx-auto">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">🚀</span>
+          <span className="font-semibold text-white">Milestone MRR</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <Link
+          href="/login"
+          className="rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 text-sm font-medium transition-colors"
+        >
+          Get started free
+        </Link>
+      </nav>
+
+      {/* Hero */}
+      <section className="max-w-3xl mx-auto px-6 pt-24 pb-16 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-xs text-indigo-400 mb-6">
+          <div className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
+          Free until $100 MRR
+        </div>
+
+        <h1 className="text-5xl font-bold tracking-tight leading-tight mb-4">
+          Celebrate every{' '}
+          <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+            MRR milestone
+          </span>{' '}
+          automatically
+        </h1>
+
+        <p className="text-lg text-white/50 max-w-xl mx-auto mb-8">
+          Connect your Stripe account. When you cross a milestone, we generate a
+          beautiful card and post it to X (Twitter) automatically.
+        </p>
+
+        <div className="flex items-center justify-center gap-3">
+          <Link
+            href="/login"
+            className="rounded-xl bg-indigo-600 hover:bg-indigo-500 px-6 py-3 text-sm font-medium transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
+            Start for free →
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#how"
+            className="rounded-xl border border-white/10 hover:border-white/20 px-6 py-3 text-sm font-medium text-white/60 hover:text-white/80 transition-colors"
           >
-            Documentation
+            How it works
           </a>
         </div>
-      </main>
+      </section>
+
+      {/* Milestone grid preview */}
+      <section className="max-w-2xl mx-auto px-6 pb-16">
+        <div className="rounded-2xl border border-white/10 bg-white/3 p-6">
+          <p className="text-xs text-white/30 text-center mb-4 uppercase tracking-wider">MRR Milestones</p>
+          <div className="grid grid-cols-4 gap-2">
+            {MILESTONES.map((m, i) => (
+              <div
+                key={m}
+                className={`rounded-xl border p-3 text-center ${
+                  i < 4
+                    ? 'border-indigo-500/40 bg-indigo-500/10'
+                    : 'border-white/8 bg-white/3'
+                }`}
+              >
+                <p className={`text-sm font-bold ${i < 4 ? 'text-indigo-300' : 'text-white/25'}`}>
+                  {m >= 1000 ? `$${m / 1000}k` : `$${m}`}
+                </p>
+                {i < 4 && <div className="text-xs mt-0.5 text-indigo-400">✓</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section id="how" className="max-w-3xl mx-auto px-6 pb-20">
+        <h2 className="text-2xl font-bold text-center mb-10">How it works</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              step: '01',
+              title: 'Connect Stripe',
+              desc: 'Paste your Stripe read-only API key. We calculate your MRR every hour.',
+            },
+            {
+              step: '02',
+              title: 'Hit a milestone',
+              desc: 'When you cross $1, $10, $100, $1k… we detect it automatically.',
+            },
+            {
+              step: '03',
+              title: 'Auto-post to X',
+              desc: 'A beautiful card is generated and posted to your Twitter timeline.',
+            },
+          ].map(item => (
+            <div key={item.step} className="rounded-2xl border border-white/10 bg-white/3 p-6">
+              <div className="text-xs font-mono text-indigo-400/60 mb-3">{item.step}</div>
+              <h3 className="font-semibold text-white mb-2">{item.title}</h3>
+              <p className="text-sm text-white/40">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="max-w-sm mx-auto px-6 pb-24 text-center">
+        <h2 className="text-2xl font-bold mb-2">Simple pricing</h2>
+        <p className="text-white/40 text-sm mb-8">No credit card required to start.</p>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-8">
+          <div className="text-4xl font-bold mb-1">Free</div>
+          <div className="text-white/40 text-sm mb-6">while your MRR is under $100</div>
+          <div className="space-y-3 text-sm text-white/60 text-left mb-8">
+            {['All 8 milestones tracked', 'Auto-post to X (Twitter)', 'Beautiful milestone cards', 'Hourly MRR checks'].map(f => (
+              <div key={f} className="flex items-center gap-2">
+                <span className="text-indigo-400">✓</span> {f}
+              </div>
+            ))}
+          </div>
+          <div className="rounded-lg bg-white/8 p-3 text-xs text-white/40">
+            After $100 MRR → <span className="text-white/60 font-medium">$9/mo</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/8 py-6 text-center text-xs text-white/20">
+        Built with Next.js, Supabase, and Stripe · © 2025 Milestone MRR
+      </footer>
     </div>
-  );
+  )
 }

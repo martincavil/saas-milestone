@@ -1,15 +1,5 @@
 import Link from "next/link";
-import {
-  Key,
-  Clock,
-  TrendingUp,
-  Check,
-  ArrowRight,
-  Zap,
-  X,
-  BarChart2,
-  Bell,
-} from "lucide-react";
+import { Key, Clock, Check, ArrowRight, Zap, X, Bell } from "lucide-react";
 import { HeroAnimation } from "@/components/landing/hero-animation";
 import {
   ScrollReveal,
@@ -17,49 +7,8 @@ import {
 } from "@/components/landing/scroll-reveal";
 import { Navbar } from "@/components/landing/navbar";
 import { SecuritySection, HowItWorksDeepSection, FAQSection, StatsBar, TestimonialsSection, BuildInPublicSection, FounderNote } from "@/components/landing/trust-sections";
+import { MilestoneCategoriesSection } from "@/components/landing/milestone-categories";
 
-const MILESTONES = [
-  {
-    amount: 1,
-    label: "$1",
-    icon: <TrendingUp size={16} className="text-indigo-400" />,
-  },
-  {
-    amount: 10,
-    label: "$10",
-    icon: <TrendingUp size={16} className="text-indigo-400" />,
-  },
-  {
-    amount: 50,
-    label: "$50",
-    icon: <TrendingUp size={16} className="text-indigo-400" />,
-  },
-  {
-    amount: 100,
-    label: "$100",
-    icon: <TrendingUp size={16} className="text-indigo-400" />,
-  },
-  {
-    amount: 500,
-    label: "$500",
-    icon: <BarChart2 size={16} className="text-violet-400" />,
-  },
-  {
-    amount: 1000,
-    label: "$1k",
-    icon: <BarChart2 size={16} className="text-violet-400" />,
-  },
-  {
-    amount: 5000,
-    label: "$5k",
-    icon: <Zap size={16} className="text-amber-400" />,
-  },
-  {
-    amount: 10000,
-    label: "$10k",
-    icon: <Zap size={16} className="text-amber-400" />,
-  },
-];
 
 export default function LandingPage() {
   return (
@@ -139,18 +88,16 @@ export default function LandingPage() {
                 className="hero-fade-2 mb-4 text-[2.75rem] font-extrabold leading-[1.08] tracking-tight text-gray-900 lg:text-5xl"
                 style={{ fontFamily: "var(--font-poppins)" }}
               >
-                Stripe hit $1k.
+                Hit a milestone.
                 <br />
                 <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                  X got the tweet.
+                  X finds out first.
                 </span>
-                <br />
-                You were asleep.
               </h1>
 
               <p className="hero-fade-3 mb-8 max-w-md text-[1.05rem] leading-relaxed text-gray-500">
-                Paste a Stripe key. When your MRR crosses $1, $10, $1k — a card
-                posts to X within the hour. Set up once, runs forever.
+                MRR, followers, users, visits, GitHub stars — every founder win
+                gets a card posted to X automatically. Set up once, runs forever.
               </p>
 
               {/* CTAs */}
@@ -255,49 +202,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Milestones grid */}
-      <section className="border-t border-gray-100 bg-gray-50 py-24">
-        <div className="mx-auto max-w-5xl px-5">
-          <ScrollReveal className="mb-12 grid gap-4 lg:grid-cols-2 lg:items-end">
-            <div>
-              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
-                8 thresholds
-              </p>
-              <h2
-                className="text-4xl font-bold text-gray-900"
-                style={{ fontFamily: "var(--font-poppins)" }}
-              >
-                Every crossing
-                <br />
-                gets a post.
-              </h2>
-            </div>
-            <p className="text-gray-500 lg:text-right">
-              From first dollar to $10k. Each one hits your timeline with a
-              custom card.
-            </p>
-          </ScrollReveal>
-
-          <ScrollRevealGrid
-            className="grid grid-cols-4 gap-3 sm:grid-cols-8"
-            staggerDelay={0.06}
-          >
-            {MILESTONES.map((m) => (
-              <div
-                key={m.amount}
-                className="group flex flex-col items-center gap-2.5 rounded-2xl border border-gray-200 bg-white p-4 text-center shadow-sm hover:border-indigo-200 hover:shadow-md transition-all cursor-default"
-              >
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 group-hover:bg-indigo-50 transition-colors">
-                  {m.icon}
-                </div>
-                <span className="text-sm font-bold text-gray-900">
-                  {m.label}
-                </span>
-              </div>
-            ))}
-          </ScrollRevealGrid>
-        </div>
-      </section>
+      <MilestoneCategoriesSection />
 
       {/* Card preview */}
       <section className="py-24">

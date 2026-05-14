@@ -50,6 +50,26 @@ export async function calculateMRR(apiKey: string): Promise<number> {
   return Math.round(mrr * 100) / 100
 }
 
+export async function getSubscriberCount(apiKey: string): Promise<number> {
+  const stripe = createStripeClient(apiKey)
+  let count = 0
+  let hasMore = true
+  let startingAfter: string | undefined
+
+  while (hasMore) {
+    const subs = await stripe.subscriptions.list({
+      status: 'active',
+      limit: 100,
+      starting_after: startingAfter,
+    })
+    count += subs.data.length
+    hasMore = subs.has_more
+    if (hasMore) startingAfter = subs.data[subs.data.length - 1].id
+  }
+
+  return count
+}
+
 export function getNewMilestones(previousMRR: number, currentMRR: number): MilestoneAmount[] {
   return MILESTONES.filter(m => previousMRR < m && currentMRR >= m)
 }

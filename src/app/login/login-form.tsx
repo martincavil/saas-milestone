@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { ArrowRight, Mail, Loader2 } from 'lucide-react'
 
 interface LoginFormProps {
   error?: string
@@ -38,11 +39,16 @@ export function LoginForm({ error, message }: LoginFormProps) {
   if (sent) {
     return (
       <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-xl">✉️</div>
-        <p className="font-semibold text-gray-900">Check your email</p>
-        <p className="text-gray-500 text-sm mt-1.5">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+          <Mail size={20} className="text-green-600" />
+        </div>
+        <p className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
+          Check your inbox
+        </p>
+        <p className="mt-1.5 text-sm text-gray-500">
           Magic link sent to <span className="font-medium text-gray-700">{email}</span>
         </p>
+        <p className="mt-3 text-xs text-gray-400">Check spam if it doesn't show up in 60 seconds.</p>
       </div>
     )
   }
@@ -56,35 +62,40 @@ export function LoginForm({ error, message }: LoginFormProps) {
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Email address</label>
+          <label className="mb-1.5 block text-sm font-medium text-gray-700">
+            Work email
+          </label>
           <input
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            placeholder="you@company.com"
+            placeholder="you@yourcompany.com"
             required
-            className="w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-colors"
+            className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 transition-colors focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
           />
         </div>
         {err && (
-          <p className="text-xs text-red-500 bg-red-50 border border-red-100 rounded-lg px-3 py-2">{err}</p>
+          <div className="rounded-xl border border-red-100 bg-red-50 px-3 py-2 text-xs text-red-600">
+            {err}
+          </div>
         )}
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-xl bg-gray-900 py-2.5 text-sm font-semibold text-white hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-gray-900 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {loading && (
-            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-            </svg>
+          {loading ? (
+            <Loader2 size={16} className="animate-spin" />
+          ) : (
+            <>
+              Send magic link
+              <ArrowRight size={15} />
+            </>
           )}
-          Send magic link
         </button>
       </form>
-      <p className="text-center text-xs text-gray-400 mt-4">
-        No password needed · instant access
+      <p className="mt-5 text-center text-xs text-gray-400">
+        No password. No friction.
       </p>
     </div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
+import { Loader2, Zap } from 'lucide-react'
 
 interface PaywallBannerProps {
   mrr: number
@@ -22,24 +22,24 @@ export function PaywallBanner({ mrr, isSubscribed }: PaywallBannerProps) {
   }
 
   return (
-    <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 flex items-center justify-between gap-4">
-      <div>
-        <p className="text-sm font-medium text-amber-300">
-          🎉 You've crossed $100 MRR — milestone tracking is now $9/mo
-        </p>
-        <p className="text-xs text-amber-400/70 mt-0.5">
-          Free tier is for MRR under $100. Upgrade to keep auto-posting milestones.
-        </p>
+    <div className="flex items-center justify-between gap-4 rounded-2xl border border-amber-500/25 bg-amber-500/8 p-4">
+      <div className="flex items-start gap-3">
+        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-amber-500/20">
+          <Zap size={14} className="text-amber-400" fill="currentColor" />
+        </div>
+        <div>
+          <p className="text-sm font-medium text-amber-300">You've crossed $100 MRR</p>
+          <p className="text-xs text-amber-400/60 mt-0.5">Upgrade to keep posting milestones automatically.</p>
+        </div>
       </div>
-      <Button
-        variant="primary"
-        size="sm"
+      <button
         onClick={handleUpgrade}
-        loading={loading}
-        className="flex-shrink-0 bg-amber-500 hover:bg-amber-400"
+        disabled={loading}
+        className="flex flex-shrink-0 items-center gap-1.5 rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-400 transition-colors disabled:opacity-50"
       >
-        Upgrade $9/mo
-      </Button>
+        {loading ? <Loader2 size={14} className="animate-spin" /> : null}
+        $9/mo
+      </button>
     </div>
   )
 }

@@ -1,23 +1,33 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Syne, DM_Sans } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const syne = Syne({
+  subsets: ['latin'],
+  variable: '--font-syne',
+  weight: ['400', '600', '700', '800'],
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  weight: ['400', '500', '600'],
+})
 
 export const metadata: Metadata = {
-  title: 'saas-milestone — Celebrate your SaaS milestones automatically',
-  description: 'Connect Stripe, hit a milestone, auto-post to X. Free until $100 MRR.',
+  title: 'saas-milestone — Post your MRR milestones to X automatically',
+  description: 'Paste a Stripe key. When your MRR crosses $1, $10, $1k — a card posts to X instantly. Free under $100 MRR.',
   openGraph: {
     title: 'saas-milestone',
-    description: 'Auto-post your MRR milestones to X (Twitter)',
+    description: 'Auto-post MRR milestones to X the moment they happen.',
     type: 'website',
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className={`${inter.className} min-h-full`}>
+    <html lang="en" className={`h-full antialiased ${syne.variable} ${dmSans.variable}`}>
+      <body className="font-sans min-h-full">
         {children}
       </body>
     </html>

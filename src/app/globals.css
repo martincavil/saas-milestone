@@ -3,13 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #0f0f10;
+  --font-syne: 'Syne', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-dm-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: var(--font-syne);
+}
+
+.font-sans {
+  font-family: var(--font-dm-sans);
 }
 
 * {
@@ -20,17 +31,86 @@ body {
   background: rgba(99, 102, 241, 0.15);
 }
 
-::-webkit-scrollbar {
-  width: 5px;
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 3px; }
+
+/* Hero MRR counter animation */
+@keyframes count-up {
+  0%   { content: "$342"; }
+  15%  { content: "$489"; }
+  30%  { content: "$612"; }
+  45%  { content: "$788"; }
+  60%  { content: "$901"; }
+  75%  { content: "$967"; }
+  88%  { content: "$1,000"; }
+  100% { content: "$1,000"; }
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+@keyframes ticker-slide {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  45%  { transform: translateY(0); opacity: 1; }
+  55%  { transform: translateY(-8px); opacity: 0; }
+  56%  { transform: translateY(8px); opacity: 0; }
+  65%  { transform: translateY(0); opacity: 1; }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
-  border-radius: 3px;
+@keyframes card-appear {
+  0%, 60%  { opacity: 0; transform: translateY(12px) scale(0.97); }
+  75%, 95% { opacity: 1; transform: translateY(0) scale(1); }
+  100%     { opacity: 0; transform: translateY(-6px) scale(0.98); }
 }
 
-/* Dashboard keeps dark bg — applied per-page */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.8); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes border-pulse {
+  0%, 100% { border-color: rgba(99, 102, 241, 0.2); }
+  50%      { border-color: rgba(99, 102, 241, 0.5); }
+}
+
+/* Dot grid background */
+.dot-grid {
+  background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Milestone number cycling animation */
+.mrr-counter {
+  animation: fade-up 0.6s ease both;
+}
+
+.hero-fade-1 { animation: fade-up 0.5s ease 0.1s both; }
+.hero-fade-2 { animation: fade-up 0.5s ease 0.2s both; }
+.hero-fade-3 { animation: fade-up 0.5s ease 0.35s both; }
+.hero-fade-4 { animation: fade-up 0.5s ease 0.5s both; }
+.hero-fade-5 { animation: fade-up 0.5s ease 0.65s both; }
+
+.animate-card-appear {
+  animation: card-appear 4s ease-in-out infinite;
+}
+
+.animate-border-pulse {
+  animation: border-pulse 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}

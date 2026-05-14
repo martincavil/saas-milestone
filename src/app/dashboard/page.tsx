@@ -8,6 +8,7 @@ import { PaywallBanner } from '@/components/dashboard/paywall-banner'
 import { calculateMRR } from '@/lib/stripe/mrr'
 import { DashboardHeader } from './dashboard-header'
 import { MILESTONES } from '@/types'
+import { Check } from 'lucide-react'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -52,8 +53,8 @@ export default async function DashboardPage() {
         {stripeConn ? (
           <MRRCard mrr={currentMRR} accountName={stripeConn.stripe_account_name} />
         ) : (
-          <div className="rounded-2xl border border-dashed border-white/15 bg-white/3 p-8 text-center">
-            <p className="text-white/40 text-sm">Connect Stripe to see your MRR</p>
+          <div className="rounded-2xl border border-dashed border-white/12 p-10 text-center">
+            <p className="text-sm text-white/35">Connect Stripe to see your MRR</p>
           </div>
         )}
 
@@ -104,10 +105,14 @@ function MilestoneRoadmap({ currentMRR, hitAmounts }: { currentMRR: number; hitA
                   : 'border-white/8 bg-white/3'
               }`}
             >
-              <p className={`text-xs font-medium ${hit ? 'text-indigo-300' : current ? 'text-green-400' : 'text-white/30'}`}>
+              <p className={`text-xs font-medium ${hit ? 'text-indigo-300' : current ? 'text-green-400' : 'text-white/30'}`} style={{ fontFamily: 'var(--font-syne)' }}>
                 {m >= 1000 ? `$${m / 1000}k` : `$${m}`}
               </p>
-              {hit && <div className="mt-1 text-xs">✓</div>}
+              {hit && (
+                <div className="mt-1 flex justify-center">
+                  <Check size={11} className="text-indigo-400" strokeWidth={2.5} />
+                </div>
+              )}
             </div>
           )
         })}

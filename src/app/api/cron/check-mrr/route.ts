@@ -79,7 +79,11 @@ export async function GET(request: Request) {
             tweetId = await postMilestoneTweet(
               conn.stripe_account_name,
               milestone,
-              imageBuffer
+              imageBuffer,
+              {
+                accessToken:       twitterCreds.access_token,
+                accessTokenSecret: twitterCreds.access_token_secret,
+              }
             )
           } catch (err) {
             console.error('Twitter post failed:', err)
@@ -133,8 +137,8 @@ async function checkFollowersMilestone(
     const accessSecret = Buffer.from(twitterConn.access_token_secret, 'base64').toString('utf-8')
 
     const client = new TwitterApi({
-      appKey:      process.env.TWITTER_CLIENT_ID!,
-      appSecret:   process.env.TWITTER_CLIENT_SECRET!,
+      appKey:      process.env.TWITTER_API_KEY    ?? process.env.TWITTER_CLIENT_ID!,
+      appSecret:   process.env.TWITTER_API_SECRET ?? process.env.TWITTER_CLIENT_SECRET!,
       accessToken,
       accessSecret,
     })
@@ -171,7 +175,10 @@ async function checkFollowersMilestone(
       let tweetId: string | null = null
       try {
         const { postMilestoneTweet } = await import('@/lib/twitter/post')
-        tweetId = await postMilestoneTweet(conn.stripe_account_name, milestone, imageBuffer)
+        tweetId = await postMilestoneTweet(conn.stripe_account_name, milestone, imageBuffer, {
+          accessToken:       twitterConn.access_token,
+          accessTokenSecret: twitterConn.access_token_secret,
+        })
       } catch {}
 
       await service.from('milestones_hit').insert({

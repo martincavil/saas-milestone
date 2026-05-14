@@ -16,35 +16,36 @@ export async function POST(request: Request) {
     if (!config) return err('Invalid category')
     if (!config.thresholds.includes(milestone)) return err('Invalid milestone for this category')
 
+    // Fetch user's Twitter tokens from DB
     const { data: twitterConn } = await service
       .from('twitter_connections')
-      .select('screen_name')
+      .select('access_token, access_token_secret, screen_name')
       .eq('user_id', user.id)
       .single()
 
-    if (!twitterConn) return err('Connect X (Twitter) first.', 400)
+    if (!twitterConn) return err('Connect X (Twitter) first in the Connectors tab.', 400)
 
     const imageBuffer = await generateMilestoneImage(saasName, milestone, currentValue, { category })
 
     let tweetId: string
     try {
-      tweetId = await postMilestoneTweet(saasName, milestone, imageBuffer)
+      tweetId = await postMilestoneTweet(saasName, milestone, imageBuffer, {
+        accessToken:       twitterConn.access_token,
+        accessTokenSecret: twitterConn.access_token_secret,
+      })
     } catch (e) {
       const msg = e instanceof Error ? e.message : 'Unknown error'
       return err(`Twitter post failed: ${msg}`, 500)
     }
 
-    const { data: inserted } = await service
+    await service
       .from('milestones_hit')
       .insert({ user_id: user.id, category, amount: milestone, hit_at: new Date().toISOString(), tweet_id: tweetId, posted: true })
-      .select('id')
-      .single()
 
     return Response.json({
-      success:     true,
+      success:  true,
       tweetId,
-      milestoneId: inserted?.id,
-      tweetUrl:    `https://x.com/i/web/status/${tweetId}`,
+      tweetUrl: `https://x.com/i/web/status/${tweetId}`,
     })
   })
 }

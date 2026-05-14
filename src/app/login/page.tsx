@@ -16,7 +16,7 @@ export default async function LoginPage({
   const params = await searchParams
 
   return (
-    <div className="min-h-screen bg-white flex" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+    <div className="min-h-screen bg-white flex" style={{ fontFamily: 'var(--font-nunito)' }}>
       {/* Left — dark panel */}
       <div className="relative hidden w-[45%] flex-col overflow-hidden bg-gray-900 p-12 lg:flex">
         <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500" />

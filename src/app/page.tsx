@@ -12,6 +12,7 @@ import {
   Bell,
 } from 'lucide-react'
 import { HeroAnimation } from '@/components/landing/hero-animation'
+import { ScrollReveal, ScrollRevealGrid } from '@/components/landing/scroll-reveal'
 
 const MILESTONES = [
   { amount: 1,     label: '$1',   icon: <TrendingUp size={16} className="text-indigo-400" /> },
@@ -26,7 +27,7 @@ const MILESTONES = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: 'var(--font-nunito)' }}>
 
       {/* Nav */}
       <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur-md">
@@ -60,10 +61,34 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
+        {/* Animated gradient orbs */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+          {/* Orb 1 — indigo, top-left */}
+          <div
+            className="orb-1 absolute -left-32 -top-32 h-[520px] w-[520px] rounded-full opacity-30"
+            style={{ background: 'radial-gradient(circle at center, #6366f1 0%, transparent 70%)', filter: 'blur(64px)' }}
+          />
+          {/* Orb 2 — violet, top-right */}
+          <div
+            className="orb-2 absolute -right-40 top-0 h-[480px] w-[480px] rounded-full opacity-25"
+            style={{ background: 'radial-gradient(circle at center, #8b5cf6 0%, transparent 70%)', filter: 'blur(72px)' }}
+          />
+          {/* Orb 3 — cyan, bottom-right */}
+          <div
+            className="orb-3 absolute bottom-0 right-1/4 h-[360px] w-[360px] rounded-full opacity-20"
+            style={{ background: 'radial-gradient(circle at center, #06b6d4 0%, transparent 70%)', filter: 'blur(56px)' }}
+          />
+          {/* Orb 4 — indigo soft, center */}
+          <div
+            className="orb-4 absolute left-1/3 top-1/4 h-[300px] w-[300px] rounded-full opacity-15"
+            style={{ background: 'radial-gradient(circle at center, #a5b4fc 0%, transparent 70%)', filter: 'blur(80px)' }}
+          />
+        </div>
+
         {/* Dot grid background */}
-        <div className="dot-grid absolute inset-0 opacity-60" />
-        {/* Radial fade over dots */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-white" />
+        <div className="dot-grid absolute inset-0 opacity-40" />
+        {/* Soft fade to white at bottom so sections connect cleanly */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-white" />
 
         <div className="relative mx-auto max-w-5xl px-5 pt-20 pb-12">
           <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -142,16 +167,16 @@ export default function LandingPage() {
       {/* How it works */}
       <section id="how" className="py-24">
         <div className="mx-auto max-w-5xl px-5">
-          <div className="mb-14 max-w-lg">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600" style={{ fontFamily: 'var(--font-syne)' }}>
+          <ScrollReveal className="mb-14 max-w-lg">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600" style={{ fontFamily: 'var(--font-nunito)' }}>
               How it works
             </p>
             <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
               Three steps. Then you forget it exists.
             </h2>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <ScrollRevealGrid className="grid gap-6 md:grid-cols-3" staggerDelay={0.12}>
             {[
               {
                 icon: <Key size={22} className="text-indigo-600" />,
@@ -173,26 +198,26 @@ export default function LandingPage() {
               },
             ].map((item) => (
               <div key={item.num} className="group relative rounded-2xl border border-gray-200 bg-white p-7 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all">
-                <div className="absolute right-5 top-5 text-xs font-mono font-bold text-gray-200 group-hover:text-indigo-100 transition-colors" style={{ fontFamily: 'var(--font-syne)' }}>
+                <div className="absolute right-5 top-5 text-xs font-mono font-bold text-gray-200 group-hover:text-indigo-100 transition-colors">
                   {item.num}
                 </div>
                 <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50">
                   {item.icon}
                 </div>
-                <h3 className="mb-2 font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>{item.title}</h3>
+                <h3 className="mb-2 font-bold text-gray-900">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-gray-500">{item.desc}</p>
               </div>
             ))}
-          </div>
+          </ScrollRevealGrid>
         </div>
       </section>
 
       {/* Milestones grid */}
       <section className="border-t border-gray-100 bg-gray-50 py-24">
         <div className="mx-auto max-w-5xl px-5">
-          <div className="mb-12 grid gap-4 lg:grid-cols-2 lg:items-end">
+          <ScrollReveal className="mb-12 grid gap-4 lg:grid-cols-2 lg:items-end">
             <div>
-              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600" style={{ fontFamily: 'var(--font-syne)' }}>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
                 8 thresholds
               </p>
               <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -203,9 +228,9 @@ export default function LandingPage() {
             <p className="text-gray-500 lg:text-right">
               From first dollar to $10k. Each one hits your timeline with a custom card.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-4 gap-3 sm:grid-cols-8">
+          <ScrollRevealGrid className="grid grid-cols-4 gap-3 sm:grid-cols-8" staggerDelay={0.06}>
             {MILESTONES.map((m) => (
               <div
                 key={m.amount}
@@ -214,10 +239,10 @@ export default function LandingPage() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 group-hover:bg-indigo-50 transition-colors">
                   {m.icon}
                 </div>
-                <span className="text-sm font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>{m.label}</span>
+                <span className="text-sm font-bold text-gray-900">{m.label}</span>
               </div>
             ))}
-          </div>
+          </ScrollRevealGrid>
         </div>
       </section>
 
@@ -225,8 +250,8 @@ export default function LandingPage() {
       <section className="py-24">
         <div className="mx-auto max-w-5xl px-5">
           <div className="grid items-center gap-16 lg:grid-cols-2">
-            <div>
-              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600" style={{ fontFamily: 'var(--font-syne)' }}>
+            <ScrollReveal direction="left">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
                 The card
               </p>
               <h2 className="mb-5 text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -251,9 +276,10 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </ScrollReveal>
 
             {/* Card mockup — static version */}
+            <ScrollReveal direction="right" delay={0.1}>
             <div className="relative">
               <div className="absolute inset-0 -m-4 rounded-3xl bg-gradient-to-br from-indigo-50 to-violet-50" />
               <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-gray-200">
@@ -290,6 +316,7 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -297,17 +324,17 @@ export default function LandingPage() {
       {/* Pricing */}
       <section id="pricing" className="border-t border-gray-100 bg-gray-50 py-24">
         <div className="mx-auto max-w-5xl px-5">
-          <div className="mb-14 max-w-lg">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600" style={{ fontFamily: 'var(--font-syne)' }}>
+          <ScrollReveal className="mb-14 max-w-lg">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
               Pricing
             </p>
             <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
               Free until you're
               <br />making real money.
             </h2>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid max-w-2xl gap-4 md:grid-cols-2">
+          <ScrollRevealGrid className="grid max-w-2xl gap-4 md:grid-cols-2" staggerDelay={0.15}>
             {/* Free */}
             <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
               <p className="mb-1 text-sm font-medium text-gray-500">Free</p>
@@ -363,13 +390,13 @@ export default function LandingPage() {
                 </Link>
               </div>
             </div>
-          </div>
+          </ScrollRevealGrid>
         </div>
       </section>
 
       {/* Final CTA */}
       <section className="bg-gray-900 py-24">
-        <div className="mx-auto max-w-2xl px-5 text-center">
+        <ScrollReveal className="mx-auto max-w-2xl px-5 text-center">
           <div className="mb-6 flex justify-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600">
               <Bell size={24} className="text-white" />
@@ -392,7 +419,7 @@ export default function LandingPage() {
             Connect Stripe for free
             <ArrowRight size={15} />
           </Link>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Footer */}

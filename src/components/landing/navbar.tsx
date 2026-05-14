@@ -79,11 +79,7 @@ export function Navbar() {
               <Link
                 href="/dashboard"
                 className="btn-primary flex items-center gap-2"
-                style={{
-                  padding:      scrolled ? '7px 16px' : '8px 18px',
-                  borderRadius: scrolled ? '10px' : '12px',
-                  fontSize:     '0.8125rem',
-                }}
+                style={{ padding: '8px 18px', borderRadius: '12px', fontSize: '0.8125rem' }}
               >
                 <LayoutDashboard size={14} />
                 Dashboard
@@ -96,11 +92,7 @@ export function Navbar() {
                 <Link
                   href="/login"
                   className="btn-primary"
-                  style={{
-                    padding:      scrolled ? '7px 16px' : '8px 18px',
-                    borderRadius: scrolled ? '10px' : '12px',
-                    fontSize:     '0.8125rem',
-                  }}
+                  style={{ padding: '8px 18px', borderRadius: '12px', fontSize: '0.8125rem' }}
                 >
                   Start tracking free
                   <ArrowRight size={14} />

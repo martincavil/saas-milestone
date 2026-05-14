@@ -38,7 +38,7 @@ export function MRRCard({ mrr, accountName }: MRRCardProps) {
             </div>
             <p
               className="text-5xl font-extrabold tracking-tighter text-white"
-              style={{ fontFamily: 'var(--font-syne)' }}
+              style={{ fontFamily: 'var(--font-poppins)' }}
             >
               {formatMRR(mrr)}
             </p>

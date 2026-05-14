@@ -105,7 +105,7 @@ function MilestoneRoadmap({ currentMRR, hitAmounts }: { currentMRR: number; hitA
                   : 'border-white/8 bg-white/3'
               }`}
             >
-              <p className={`text-xs font-medium ${hit ? 'text-indigo-300' : current ? 'text-green-400' : 'text-white/30'}`} style={{ fontFamily: 'var(--font-syne)' }}>
+              <p className={`text-xs font-medium ${hit ? 'text-indigo-300' : current ? 'text-green-400' : 'text-white/30'}`} style={{ fontFamily: 'var(--font-poppins)' }}>
                 {m >= 1000 ? `$${m / 1000}k` : `$${m}`}
               </p>
               {hit && (

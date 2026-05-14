@@ -36,7 +36,7 @@ export function DashboardHeader({ email, isSubscribed }: DashboardHeaderProps) {
           <div className="flex h-6 w-6 items-center justify-center rounded-md bg-indigo-600">
             <Zap size={12} className="text-white" fill="white" />
           </div>
-          <span className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-syne)' }}>
+          <span className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>
             saas-milestone
           </span>
           {isSubscribed && (

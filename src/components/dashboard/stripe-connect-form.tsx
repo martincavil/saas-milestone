@@ -82,7 +82,7 @@ export function StripeConnectForm({ isConnected, accountName }: StripeConnectFor
 
   return (
     <div className="rounded-2xl border border-white/8 bg-white/4 p-5">
-      <p className="mb-1 text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-syne)' }}>
+      <p className="mb-1 text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>
         Connect Stripe
       </p>
       <p className="mb-4 text-xs text-white/40">

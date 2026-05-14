@@ -42,7 +42,7 @@ export function LoginForm({ error, message }: LoginFormProps) {
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
           <Mail size={20} className="text-green-600" />
         </div>
-        <p className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
+        <p className="font-semibold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
           Check your inbox
         </p>
         <p className="mt-1.5 text-sm text-gray-500">

@@ -49,7 +49,7 @@ export function TwitterConnect({ isConnected, screenName }: TwitterConnectProps)
     <div className="rounded-2xl border border-white/8 bg-white/4 p-5">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-syne)' }}>Connect X (Twitter)</p>
+          <p className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>Connect X (Twitter)</p>
           <p className="text-xs text-white/40 mt-0.5">Auto-post milestones to your timeline</p>
         </div>
         <a

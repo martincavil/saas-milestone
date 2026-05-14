@@ -43,7 +43,7 @@ export function MilestoneFeed({ milestones }: MilestoneFeedProps) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-white text-sm" style={{ fontFamily: 'var(--font-syne)' }}>
+            <p className="font-semibold text-white text-sm" style={{ fontFamily: 'var(--font-poppins)' }}>
               {formatMRR(m.amount)} MRR
             </p>
             <p className="text-xs text-white/35 mt-0.5">{formatDate(m.hit_at)}</p>

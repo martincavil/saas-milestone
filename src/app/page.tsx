@@ -7,12 +7,12 @@ import {
   ArrowRight,
   Zap,
   X,
-  ChevronRight,
   BarChart2,
   Bell,
 } from 'lucide-react'
 import { HeroAnimation } from '@/components/landing/hero-animation'
 import { ScrollReveal, ScrollRevealGrid } from '@/components/landing/scroll-reveal'
+import { Navbar } from '@/components/landing/navbar'
 
 const MILESTONES = [
   { amount: 1,     label: '$1',   icon: <TrendingUp size={16} className="text-indigo-400" /> },
@@ -29,35 +29,9 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'var(--font-nunito)' }}>
 
-      {/* Nav */}
-      <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-5">
-          <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600">
-              <Zap size={14} className="text-white" fill="white" />
-            </div>
-            <span className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
-              saas-milestone
-            </span>
-          </div>
-          <nav className="hidden items-center gap-6 text-sm text-gray-500 md:flex">
-            <a href="#how" className="hover:text-gray-900 transition-colors">How it works</a>
-            <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
-          </nav>
-          <div className="flex items-center gap-2">
-            <Link href="/login" className="hidden text-sm text-gray-500 hover:text-gray-900 transition-colors sm:block px-3 py-1.5">
-              Sign in
-            </Link>
-            <Link
-              href="/login"
-              className="flex items-center gap-1.5 rounded-lg bg-gray-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-gray-700 transition-colors"
-            >
-              Connect Stripe free
-              <ChevronRight size={14} />
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Navbar />
+      {/* Spacer for fixed navbar */}
+      <div className="h-[60px]" />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -104,7 +78,7 @@ export default function LandingPage() {
               {/* Headline */}
               <h1
                 className="hero-fade-2 mb-4 text-[2.75rem] font-extrabold leading-[1.08] tracking-tight text-gray-900 lg:text-5xl"
-                style={{ fontFamily: 'var(--font-syne)' }}
+                style={{ fontFamily: 'var(--font-poppins)' }}
               >
                 Stripe hit $1k.
                 <br />
@@ -171,7 +145,7 @@ export default function LandingPage() {
             <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600" style={{ fontFamily: 'var(--font-nunito)' }}>
               How it works
             </p>
-            <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
+            <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
               Three steps. Then you forget it exists.
             </h2>
           </ScrollReveal>
@@ -220,7 +194,7 @@ export default function LandingPage() {
               <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
                 8 thresholds
               </p>
-              <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
                 Every crossing
                 <br />gets a post.
               </h2>
@@ -254,7 +228,7 @@ export default function LandingPage() {
               <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
                 The card
               </p>
-              <h2 className="mb-5 text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h2 className="mb-5 text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
                 What posts
                 <br />to your timeline
               </h2>
@@ -294,7 +268,7 @@ export default function LandingPage() {
                   </div>
                   <p
                     className="mb-1 text-[4.5rem] font-extrabold leading-none tracking-tighter text-white"
-                    style={{ fontFamily: 'var(--font-syne)' }}
+                    style={{ fontFamily: 'var(--font-poppins)' }}
                   >
                     $1k
                   </p>
@@ -328,7 +302,7 @@ export default function LandingPage() {
             <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">
               Pricing
             </p>
-            <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
+            <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
               Free until you're
               <br />making real money.
             </h2>
@@ -339,7 +313,7 @@ export default function LandingPage() {
             <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
               <p className="mb-1 text-sm font-medium text-gray-500">Free</p>
               <div className="mb-1 flex items-end gap-1">
-                <span className="text-5xl font-extrabold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>$0</span>
+                <span className="text-5xl font-extrabold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>$0</span>
               </div>
               <p className="mb-7 text-sm text-gray-400">While MRR is under $100</p>
               <ul className="mb-8 space-y-3">
@@ -368,7 +342,7 @@ export default function LandingPage() {
               <div className="relative">
                 <p className="mb-1 text-sm font-medium text-gray-400">Pro</p>
                 <div className="mb-1 flex items-end gap-1">
-                  <span className="text-5xl font-extrabold text-white" style={{ fontFamily: 'var(--font-syne)' }}>$9</span>
+                  <span className="text-5xl font-extrabold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>$9</span>
                   <span className="mb-2 text-sm text-gray-400">/mo</span>
                 </div>
                 <p className="mb-7 text-sm text-gray-400">After $100 MRR — when it makes sense</p>
@@ -404,7 +378,7 @@ export default function LandingPage() {
           </div>
           <h2
             className="mb-4 text-4xl font-extrabold text-white"
-            style={{ fontFamily: 'var(--font-syne)' }}
+            style={{ fontFamily: 'var(--font-poppins)' }}
           >
             Your first dollar is out there.
             <br />Go get it.
@@ -429,7 +403,7 @@ export default function LandingPage() {
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-indigo-600">
               <Zap size={12} className="text-white" fill="white" />
             </div>
-            <span className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-syne)' }}>saas-milestone</span>
+            <span className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>saas-milestone</span>
           </div>
           <p className="text-xs text-gray-500">Built with Next.js, Supabase & Stripe · © 2025</p>
           <Link href="/login" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Sign in</Link>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Nunito, Syne } from 'next/font/google'
+import { Nunito, Poppins } from 'next/font/google'
 import './globals.css'
 
 const nunito = Nunito({
@@ -8,10 +8,10 @@ const nunito = Nunito({
   weight: ['400', '500', '600', '700', '800', '900'],
 })
 
-const syne = Syne({
+const poppins = Poppins({
   subsets: ['latin'],
-  variable: '--font-syne',
-  weight: ['700', '800'],
+  variable: '--font-poppins',
+  weight: ['600', '700', '800'],
 })
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`h-full antialiased ${nunito.variable} ${syne.variable}`}>
+    <html lang="en" className={`h-full antialiased ${nunito.variable} ${poppins.variable}`}>
       <body className="min-h-full" style={{ fontFamily: 'var(--font-nunito)' }}>
         {children}
       </body>

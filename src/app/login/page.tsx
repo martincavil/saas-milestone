@@ -26,14 +26,14 @@ export default async function LoginPage({
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600">
             <Zap size={14} className="text-white" fill="white" />
           </div>
-          <span className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-syne)' }}>
+          <span className="text-sm font-semibold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>
             saas-milestone
           </span>
         </Link>
 
         {/* Middle — mini card preview */}
         <div className="flex flex-1 flex-col justify-center">
-          <p className="mb-6 text-2xl font-bold leading-tight text-white" style={{ fontFamily: 'var(--font-syne)' }}>
+          <p className="mb-6 text-2xl font-bold leading-tight text-white" style={{ fontFamily: 'var(--font-poppins)' }}>
             Hit a milestone.
             <br />
             <span className="text-indigo-400">X finds out first.</span>
@@ -50,7 +50,7 @@ export default async function LoginPage({
                   <span className="text-xs text-indigo-300">Milestone</span>
                 </div>
               </div>
-              <p className="text-5xl font-extrabold tracking-tighter text-white" style={{ fontFamily: 'var(--font-syne)' }}>$1k</p>
+              <p className="text-5xl font-extrabold tracking-tighter text-white" style={{ fontFamily: 'var(--font-poppins)' }}>$1k</p>
               <p className="mt-1 text-xs text-white/40">Monthly Recurring Revenue</p>
               <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-white/8">
                 <div className="h-full w-1/5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500" />
@@ -87,7 +87,7 @@ export default async function LoginPage({
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600">
               <Zap size={14} className="text-white" fill="white" />
             </div>
-            <span className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>saas-milestone</span>
+            <span className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>saas-milestone</span>
           </Link>
         </div>
 
@@ -95,7 +95,7 @@ export default async function LoginPage({
         <div className="flex flex-1 items-center justify-center px-6 py-12">
           <div className="w-full max-w-sm">
             <div className="mb-8">
-              <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-poppins)' }}>
                 Sign in
               </h1>
               <p className="mt-1 text-sm text-gray-500">

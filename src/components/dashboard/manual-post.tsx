@@ -107,27 +107,28 @@ export function ManualPost({
     setError(null);
     setResult(null);
 
-    const res = await fetch("/api/milestones/manual-post", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        category,
-        milestone,
-        currentValue: parsed,
-        saasName,
-      }),
-    });
+    try {
+      const res = await fetch("/api/milestones/manual-post", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ category, milestone, currentValue: parsed, saasName }),
+      });
 
-    const data = await res.json();
-    setLoading(false);
+      // Always parse JSON — api-helpers now guarantees a JSON response
+      const data = await res.json().catch(() => ({ error: `Server error (HTTP ${res.status})` }));
 
-    if (!res.ok) {
-      setError(data.error);
-      return;
+      if (!res.ok) {
+        setError(data.error ?? "Post failed — check server logs.");
+        return;
+      }
+
+      setResult({ tweetUrl: data.tweetUrl });
+      // Don't router.refresh() — it triggers the loading skeleton which looks like a loop
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Network error — is the server running?");
+    } finally {
+      setLoading(false);
     }
-
-    setResult({ tweetUrl: data.tweetUrl });
-    router.refresh();
   }
 
   // ── Locked state (free tier) ──────────────────────────────────────────────

@@ -95,9 +95,9 @@ export function ChartsPanel({ accounts, totalMRR, milestones }: ChartsPanelProps
         )}
 
         {mrrChartType === 'area' ? (
-          <MRRChart accounts={accounts} totalMRR={totalMRR} view={viewMode} />
+          <MRRChart accounts={accounts} totalMRR={totalMRR} allMilestones={milestones} view={viewMode} />
         ) : (
-          <MRRBarChart accounts={accounts} totalMRR={totalMRR} view={viewMode} />
+          <MRRBarChart accounts={accounts} totalMRR={totalMRR} allMilestones={milestones} view={viewMode} />
         )}
 
         {/* Stats row under chart */}
@@ -151,7 +151,7 @@ export function ChartsPanel({ accounts, totalMRR, milestones }: ChartsPanelProps
               <span className="text-xs text-green-400">+15% avg</span>
             </div>
           </SectionHeader>
-          <GrowthChart currentMRR={totalMRR} />
+          <GrowthChart currentMRR={totalMRR} milestones={milestones} />
           <p className="mt-2 text-xs text-white/25 text-center">
             Estimated from current MRR — enable history snapshots for real data
           </p>

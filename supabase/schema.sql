@@ -1,15 +1,15 @@
 -- Enable required extensions
 create extension if not exists "uuid-ossp";
 
--- stripe_connections
+-- stripe_connections — multiple SaaS per user allowed
 create table if not exists public.stripe_connections (
   id uuid primary key default uuid_generate_v4(),
   user_id uuid not null references auth.users(id) on delete cascade,
   stripe_api_key_encrypted text not null,
   stripe_account_name text not null default 'My SaaS',
   created_at timestamptz default now(),
-  updated_at timestamptz default now(),
-  unique(user_id)
+  updated_at timestamptz default now()
+  -- no unique(user_id): one user can connect multiple SaaS
 );
 
 -- milestones_hit — extended with category

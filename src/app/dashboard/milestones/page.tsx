@@ -22,7 +22,7 @@ export default async function MilestonesPage() {
   return (
     <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-xl font-bold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>Milestones</h1>
+        <h1 className="text-xl font-bold text-white font-poppins">Milestones</h1>
         <p className="text-xs text-white/35 mt-0.5">Every threshold you've ever crossed</p>
       </div>
 
@@ -34,7 +34,7 @@ export default async function MilestonesPage() {
           { label: 'Not posted', value: all.length - posted },
         ].map(s => (
           <div key={s.label} className="rounded-2xl border border-white/8 bg-white/4 p-4 text-center">
-            <p className="text-2xl font-extrabold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>{s.value}</p>
+            <p className="text-2xl font-extrabold text-white font-poppins">{s.value}</p>
             <p className="text-xs text-white/35 mt-1">{s.label}</p>
           </div>
         ))}

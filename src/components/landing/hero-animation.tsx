@@ -268,8 +268,7 @@ export function HeroAnimation() {
         <div className="border-b border-white/8 px-4 py-2.5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white"
-              style={{ fontFamily: "var(--font-poppins)" }}
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white font-poppins"
             >
               M
             </div>
@@ -300,8 +299,7 @@ export function HeroAnimation() {
                   MY SAAS
                 </p>
                 <p
-                  className="text-xl font-extrabold text-white leading-none"
-                  style={{ fontFamily: "var(--font-poppins)" }}
+                  className="text-xl font-extrabold text-white leading-none font-poppins"
                 >
                   $1k
                 </p>

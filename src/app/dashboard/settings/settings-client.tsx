@@ -65,8 +65,7 @@ export function SettingsClient({
     <div className="p-6 space-y-8 max-w-lg">
       <div>
         <h1
-          className="text-xl font-bold text-white"
-          style={{ fontFamily: "var(--font-poppins)" }}
+          className="text-xl font-bold text-white font-poppins"
         >
           Settings
         </h1>

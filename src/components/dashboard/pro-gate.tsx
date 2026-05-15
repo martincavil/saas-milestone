@@ -8,7 +8,7 @@ export function ProGate({ feature = 'This feature' }: { feature?: string }) {
         <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
           <Lock size={22} className="text-white/40" />
         </div>
-        <h2 className="mb-2 text-lg font-bold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>
+        <h2 className="mb-2 text-lg font-bold text-white font-poppins">
           {feature} — Pro only
         </h2>
         <p className="mb-6 text-sm text-white/45 leading-relaxed">

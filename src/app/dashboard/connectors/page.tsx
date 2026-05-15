@@ -145,8 +145,7 @@ export default async function ConnectorsPage({
     <div className="p-6 space-y-8">
       <div>
         <h1
-          className="text-xl font-bold text-white"
-          style={{ fontFamily: "var(--font-poppins)" }}
+          className="text-xl font-bold text-white font-poppins"
         >
           Connectors
         </h1>

@@ -91,7 +91,7 @@ export function ProDashboard({ milestones, isSubscribed }: ProDashboardProps) {
                 <p className="text-xs font-mono uppercase tracking-widest text-white/35 mb-1">
                   Total MRR{data.accounts.length > 1 ? ` · ${data.accounts.length} SaaS` : ''}
                 </p>
-                <p className="text-5xl font-extrabold text-white tracking-tight" style={{ fontFamily: 'var(--font-poppins)' }}>
+                <p className="text-5xl font-extrabold text-white tracking-tight font-poppins">
                   {fmtMoney(data.totalMRR)}
                 </p>
                 <p className="text-sm text-white/40 mt-1">
@@ -150,7 +150,7 @@ export function ProDashboard({ milestones, isSubscribed }: ProDashboardProps) {
                       )}
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-bold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>
+                      <p className="text-sm font-bold text-white font-poppins">
                         {fmtMoney(account.mrr)}
                         <span className="text-xs text-white/35 font-normal ml-1">MRR</span>
                       </p>
@@ -193,7 +193,7 @@ export function ProDashboard({ milestones, isSubscribed }: ProDashboardProps) {
               if (!config) return null
               return (
                 <div key={cat} className="rounded-xl border border-white/8 bg-white/4 p-3 text-center">
-                  <p className="text-lg font-bold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>{count}</p>
+                  <p className="text-lg font-bold text-white font-poppins">{count}</p>
                   <p className="text-xs text-white/40 mt-0.5">{config.label}</p>
                 </div>
               )
@@ -257,7 +257,7 @@ function StatCard({
         {icon}
         <span className="text-xs text-white/40">{label}</span>
       </div>
-      <p className="text-2xl font-extrabold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>{value}</p>
+      <p className="text-2xl font-extrabold text-white font-poppins">{value}</p>
       <p className="text-xs text-white/30 mt-0.5">{sub}</p>
     </div>
   )

@@ -310,8 +310,7 @@ export function MilestoneCategoriesSection() {
             6 milestone types
           </p>
           <h2
-            className="text-4xl font-bold text-gray-900 max-w-xl"
-            style={{ fontFamily: "var(--font-poppins)" }}
+            className="text-4xl font-bold text-gray-900 max-w-xl font-poppins"
           >
             Not just revenue.
             <br />
@@ -550,8 +549,7 @@ export function MilestoneCategoriesSection() {
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <div
-                      className="h-8 w-8 rounded-full bg-gray-900 flex items-center justify-center text-xs font-bold text-white"
-                      style={{ fontFamily: "var(--font-poppins)" }}
+                      className="h-8 w-8 rounded-full bg-gray-900 flex items-center justify-center text-xs font-bold text-white font-poppins"
                     >
                       M
                     </div>

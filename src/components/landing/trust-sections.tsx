@@ -55,8 +55,7 @@ export function StatsBar() {
               <div className="flex items-center gap-1.5">
                 {s.icon}
                 <span
-                  className="text-xl font-extrabold text-gray-900"
-                  style={{ fontFamily: "var(--font-poppins)" }}
+                  className="text-xl font-extrabold text-gray-900 font-poppins"
                 >
                   {s.value}
                 </span>
@@ -107,8 +106,7 @@ export function TestimonialsSection() {
             What founders say
           </p>
           <h2
-            className="text-4xl font-bold text-gray-900"
-            style={{ fontFamily: "var(--font-poppins)" }}
+            className="text-4xl font-bold text-gray-900 font-poppins"
           >
             From the #buildinpublic community
           </h2>
@@ -169,8 +167,7 @@ export function BuildInPublicSection() {
               Why it matters
             </p>
             <h2
-              className="mb-5 text-4xl font-bold text-gray-900"
-              style={{ fontFamily: "var(--font-poppins)" }}
+              className="mb-5 text-4xl font-bold text-gray-900 font-poppins"
             >
               Building in public
               <br />
@@ -265,8 +262,7 @@ export function FounderNote() {
           <div className="rounded-2xl border border-indigo-100 bg-indigo-50/50 p-8">
             <div className="mb-6 flex items-center gap-3">
               <div
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 text-lg font-bold text-white"
-                style={{ fontFamily: "var(--font-poppins)" }}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 text-lg font-bold text-white font-poppins"
               >
                 M
               </div>
@@ -304,8 +300,7 @@ export function SecuritySection() {
               Security
             </p>
             <h2
-              className="mb-5 text-4xl font-bold text-gray-900"
-              style={{ fontFamily: "var(--font-poppins)" }}
+              className="mb-5 text-4xl font-bold text-gray-900 font-poppins"
             >
               Your Stripe key.
               <br />
@@ -467,8 +462,7 @@ export function HowItWorksDeepSection() {
             Under the hood
           </p>
           <h2
-            className="text-4xl font-bold text-gray-900"
-            style={{ fontFamily: "var(--font-poppins)" }}
+            className="text-4xl font-bold text-gray-900 font-poppins"
           >
             Exactly what happens
             <br />
@@ -545,8 +539,7 @@ export function FAQSection() {
             FAQ
           </p>
           <h2
-            className="text-4xl font-bold text-gray-900"
-            style={{ fontFamily: "var(--font-poppins)" }}
+            className="text-4xl font-bold text-gray-900 font-poppins"
           >
             Questions founders ask
           </h2>

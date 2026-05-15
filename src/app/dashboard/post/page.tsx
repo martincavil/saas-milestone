@@ -26,7 +26,7 @@ export default async function PostPage() {
   return (
     <div className="p-6 space-y-5 max-w-lg">
       <div>
-        <h1 className="text-xl font-bold text-white" style={{ fontFamily: 'var(--font-poppins)' }}>Post a milestone</h1>
+        <h1 className="text-xl font-bold text-white font-poppins">Post a milestone</h1>
         <p className="text-xs text-white/35 mt-0.5">Choose any metric and trigger an X post manually</p>
       </div>
       <ManualPost

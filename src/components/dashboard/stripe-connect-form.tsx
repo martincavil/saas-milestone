@@ -138,8 +138,7 @@ export function StripeConnectForm({ connections }: StripeConnectFormProps) {
       <div className="flex items-center justify-between">
         <div>
           <p
-            className="text-sm font-semibold text-white"
-            style={{ fontFamily: "var(--font-poppins)" }}
+            className="text-sm font-semibold text-white font-poppins"
           >
             Stripe
           </p>

@@ -86,7 +86,7 @@ export function PricingSection() {
         {/* Launch offer banner — shown on annual */}
         {isAnnual && (
           <ScrollReveal className="mx-auto mb-6 max-w-3xl">
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-3.5 flex items-center gap-4">
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-3.5 flex flex-col md:flex-row items-center gap-4">
               <span className="text-xl shrink-0">🚀</span>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold text-amber-900">
@@ -112,7 +112,7 @@ export function PricingSection() {
           className={`grid max-w-3xl gap-4 mx-auto ${isAnnual ? "md:grid-cols-3" : "md:grid-cols-2"}`}
         >
           {/* Free */}
-          <div className="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="order-1 md:order-0  flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
             <p className="mb-1 text-sm font-medium text-gray-500">Free</p>
             <div className="mb-1 flex items-end gap-1">
               <span className="text-4xl font-extrabold text-gray-900 font-poppins">
@@ -147,7 +147,7 @@ export function PricingSection() {
 
           {/* Launch offer — annual only */}
           {isAnnual && (
-            <div className="flex flex-col relative overflow-hidden rounded-2xl border-2 border-amber-400 bg-white p-6 shadow-lg">
+            <div className="order-0 md:order-1 flex flex-col relative overflow-hidden rounded-2xl border-2 border-amber-400 bg-white p-6 shadow-lg">
               <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400" />
               <div className="absolute right-3 top-3">
                 <span className="rounded-full bg-amber-400 px-2 py-0.5 text-xs font-bold text-white">
@@ -187,7 +187,7 @@ export function PricingSection() {
               <Link
                 href="/login"
                 className="btn-primary block w-full justify-center text-center"
-                style={{ background: '#f59e0b' }}
+                style={{ background: "#f59e0b" }}
               >
                 Claim your spot
               </Link>
@@ -195,7 +195,7 @@ export function PricingSection() {
           )}
 
           {/* Pro */}
-          <div className="flex flex-col relative overflow-hidden rounded-2xl bg-gray-900 p-6 text-white shadow-xl">
+          <div className="order-2  flex flex-col relative overflow-hidden rounded-2xl bg-gray-900 p-6 text-white shadow-xl">
             <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500" />
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-indigo-600/10" />
             <div className="relative flex flex-col h-full">
@@ -246,7 +246,7 @@ export function PricingSection() {
               <Link
                 href="/login"
                 className="btn-primary block w-full justify-center text-center"
-                style={{ background: "#fff", color: "#111827" }}
+                
               >
                 {isAnnual ? "Get Pro annual" : "Start free"}
               </Link>

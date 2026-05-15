@@ -77,7 +77,7 @@ export function HorizontalBars({ data, formatValue = (n) => n.toString() }: BarC
         <div key={item.label}>
           <div className="flex items-center justify-between mb-1 text-xs">
             <span className="text-white/55 truncate max-w-[140px]">{item.label}</span>
-            <span className="text-white/70 font-semibold ml-2" style={{ fontFamily: 'var(--font-poppins)' }}>
+            <span className="text-white/70 font-semibold ml-2 font-poppins">
               {formatValue(item.value)}
             </span>
           </div>
@@ -124,7 +124,7 @@ export function StatCard({ label, value, sub, trend, sparkData, color = '#6366f1
           </span>
         )}
       </div>
-      <p className="text-2xl font-extrabold text-white mb-1" style={{ fontFamily: 'var(--font-poppins)' }}>
+      <p className="text-2xl font-extrabold text-white mb-1 font-poppins">
         {value}
       </p>
       {sub && <p className="text-xs text-white/30">{sub}</p>}

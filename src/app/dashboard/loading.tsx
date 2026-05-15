@@ -5,7 +5,7 @@ export default function DashboardLoading() {
       <div className="absolute inset-x-0 top-0 h-0.5 overflow-hidden">
         <div
           className="h-full bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-500"
-          style={{ animation: 'loading-bar 1.4s ease-in-out infinite' }}
+          style={{ animationName: "loading-bar", animationDuration: "1.4s", animationTimingFunction: "ease-in-out", animationIterationCount: "infinite" }}
         />
       </div>
 

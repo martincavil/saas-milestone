@@ -141,8 +141,7 @@ export function ManualPost({
           </div>
           <div className="flex-1">
             <p
-              className="text-sm font-semibold text-white"
-              style={{ fontFamily: "var(--font-poppins)" }}
+              className="text-sm font-semibold text-white font-poppins"
             >
               Manual posting — Pro only
             </p>
@@ -166,8 +165,7 @@ export function ManualPost({
           </div>
           <div>
             <p
-              className="text-sm font-semibold text-white"
-              style={{ fontFamily: "var(--font-poppins)" }}
+              className="text-sm font-semibold text-white font-poppins"
             >
               Connect X to post manually
             </p>
@@ -186,8 +184,7 @@ export function ManualPost({
     <div className="rounded-2xl border border-white/8 bg-white/4 p-5 space-y-5">
       <div>
         <p
-          className="text-sm font-semibold text-white"
-          style={{ fontFamily: "var(--font-poppins)" }}
+          className="text-sm font-semibold text-white font-poppins"
         >
           Post a milestone manually
         </p>

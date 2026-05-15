@@ -124,8 +124,7 @@ export function OverviewClient({
       <div className="flex items-center justify-between">
         <div>
           <h1
-            className="text-xl font-bold text-white"
-            style={{ fontFamily: "var(--font-poppins)" }}
+            className="text-xl font-bold text-white font-poppins"
           >
             Overview
           </h1>
@@ -283,8 +282,7 @@ export function OverviewClient({
                   >
                     <p className="text-xs text-white/45 truncate">{a.name}</p>
                     <p
-                      className="text-sm font-bold text-white"
-                      style={{ fontFamily: "var(--font-poppins)" }}
+                      className="text-sm font-bold text-white font-poppins"
                     >
                       {fmt(a.mrr)}
                     </p>

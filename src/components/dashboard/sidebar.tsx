@@ -63,8 +63,7 @@ export function Sidebar({ email, isSubscribed }: SidebarProps) {
           <Zap size={13} className="text-white" fill="white" />
         </div>
         <span
-          className="text-sm font-semibold text-white"
-          style={{ fontFamily: "var(--font-poppins)" }}
+          className="text-sm font-semibold text-white font-poppins"
         >
           saas-milestone
         </span>

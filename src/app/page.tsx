@@ -21,8 +21,7 @@ import { PricingSection } from "@/components/landing/pricing-section";
 export default function LandingPage() {
   return (
     <div
-      className="min-h-screen bg-white"
-      style={{ fontFamily: "var(--font-nunito)" }}
+      className="min-h-screen bg-white font-nunito"
     >
       <Navbar />
       {/* Spacer for fixed navbar */}
@@ -93,8 +92,7 @@ export default function LandingPage() {
 
               {/* Headline */}
               <h1
-                className="hero-fade-2 mb-4 text-[2.75rem] font-extrabold leading-[1.08] tracking-tight text-gray-900 lg:text-5xl"
-                style={{ fontFamily: "var(--font-poppins)" }}
+                className="hero-fade-2 mb-4 text-[2.75rem] font-extrabold leading-[1.08] tracking-tight text-gray-900 lg:text-5xl font-poppins"
               >
                 Track your wins.
                 <br />
@@ -153,14 +151,12 @@ export default function LandingPage() {
         <div className="mx-auto max-w-5xl px-5">
           <ScrollReveal className="mb-14 max-w-lg">
             <p
-              className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600"
-              style={{ fontFamily: "var(--font-nunito)" }}
+              className="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600 font-nunito"
             >
               How it works
             </p>
             <h2
-              className="text-4xl font-bold text-gray-900"
-              style={{ fontFamily: "var(--font-poppins)" }}
+              className="text-4xl font-bold text-gray-900 font-poppins"
             >
               Three steps. Done.
             </h2>
@@ -221,8 +217,7 @@ export default function LandingPage() {
                 Auto-generated visuals
               </p>
               <h2
-                className="mb-5 text-4xl font-bold text-gray-900"
-                style={{ fontFamily: "var(--font-poppins)" }}
+                className="mb-5 text-4xl font-bold text-gray-900 font-poppins"
               >
                 Auto-generated visuals,
                 <br />
@@ -277,8 +272,7 @@ export default function LandingPage() {
                       </div>
                     </div>
                     <p
-                      className="mb-1 text-[4.5rem] font-extrabold leading-none tracking-tighter text-white"
-                      style={{ fontFamily: "var(--font-poppins)" }}
+                      className="mb-1 text-[4.5rem] font-extrabold leading-none tracking-tighter text-white font-poppins"
                     >
                       $1k
                     </p>
@@ -327,8 +321,7 @@ export default function LandingPage() {
             </div>
           </div>
           <h2
-            className="mb-4 text-4xl font-extrabold text-white"
-            style={{ fontFamily: "var(--font-poppins)" }}
+            className="mb-4 text-4xl font-extrabold text-white font-poppins"
           >
             Stop letting milestones go unannounced.
           </h2>

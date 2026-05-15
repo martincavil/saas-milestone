@@ -199,3 +199,22 @@ details summary {
 details summary::-webkit-details-marker {
   display: none;
 }
+
+/* ─── Theme-aware input ─── */
+.t-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid #d1d5db;   /* visible neutral gray in light mode */
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.9375rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: var(--font-nunito);
+}
+.dark .t-input            { border-color: rgba(255,255,255,0.2); }
+.t-input::placeholder     { color: var(--text-3); }
+.t-input:focus            { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
+.t-input:hover:not(:focus){ border-color: #9ca3af; }
+.dark .t-input:hover:not(:focus) { border-color: rgba(255,255,255,0.35); }

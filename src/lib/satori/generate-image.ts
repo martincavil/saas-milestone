@@ -133,7 +133,7 @@ export async function generateMilestoneImage(
         React.createElement(
           'div',
           { style: { fontSize: '11px', color: 'rgba(255,255,255,0.3)', display: 'flex' } },
-          'app.saas-milestone.com/dashboard'
+          'app.MilestoneHit.com/dashboard'
         )
       ),
       // Milestone badge (right of chrome)
@@ -302,7 +302,7 @@ export async function generateMilestoneImage(
         React.createElement(
           'div',
           { style: { fontSize: '11px', color: 'rgba(255,255,255,0.15)', display: 'flex', marginTop: '16px' } },
-          'saas-milestone.com · auto-posted to X'
+          'MilestoneHit.com · auto-posted to X'
         )
       ),
 

@@ -65,7 +65,7 @@ export function Sidebar({ email, isSubscribed }: SidebarProps) {
         <span
           className="text-sm font-semibold text-white font-poppins"
         >
-          saas-milestone
+          MilestoneHit
         </span>
         {isSubscribed && (
           <span className="ml-auto rounded-full bg-indigo-500/20 border border-indigo-500/30 px-1.5 py-0.5 text-xs text-indigo-400">

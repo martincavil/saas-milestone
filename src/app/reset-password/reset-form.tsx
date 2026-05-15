@@ -38,31 +38,31 @@ export function ResetPasswordForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-5 font-nunito" style={{ background: 'var(--bg)' }}>
+    <div className="min-h-screen flex items-center justify-center px-5 font-nunito bg-base">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600">
               <Zap size={14} className="text-white" fill="white" />
             </div>
-            <span className="text-sm font-semibold font-poppins" style={{ color: 'var(--text)' }}>saas-milestone</span>
+            <span className="text-sm font-semibold font-poppins text-ink">MilestoneHit</span>
           </Link>
-          <h1 className="text-2xl font-bold font-poppins" style={{ color: 'var(--text)' }}>
+          <h1 className="text-2xl font-bold font-poppins text-ink">
             {done ? 'Password updated' : 'Set new password'}
           </h1>
         </div>
 
         {done ? (
-          <div className="rounded-2xl border p-8 text-center" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+          <div className="rounded-2xl border p-8 text-center bg-surf border-edge">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-xl">✓</div>
-            <p className="text-sm mb-4" style={{ color: 'var(--text-2)' }}>Your password has been updated successfully.</p>
+            <p className="text-sm mb-4 text-ink-2">Your password has been updated successfully.</p>
             <Link href="/login" className="btn-primary w-full justify-center">
               Sign in <ArrowRight size={15} />
             </Link>
           </div>
         ) : !sessionOk ? (
-          <div className="rounded-2xl border p-8 text-center" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
-            <p className="text-sm mb-4" style={{ color: 'var(--text-2)' }}>
+          <div className="rounded-2xl border p-8 text-center bg-surf border-edge">
+            <p className="text-sm mb-4 text-ink-2">
               This link has expired or is invalid. Request a new one.
             </p>
             <Link href="/login" className="btn-secondary w-full justify-center">
@@ -70,7 +70,7 @@ export function ResetPasswordForm() {
             </Link>
           </div>
         ) : (
-          <div className="rounded-2xl border" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+          <div className="rounded-2xl border bg-surf border-edge">
             <div className="p-6">
               <form onSubmit={handleSubmit} className="space-y-4">
                 {err && (
@@ -84,7 +84,7 @@ export function ResetPasswordForm() {
                   { label: 'Confirm password', value: confirm, setValue: setConfirm, placeholder: 'Repeat your password' },
                 ].map(({ label, value, setValue, placeholder }) => (
                   <div key={label}>
-                    <label className="mb-1.5 block text-sm font-medium" style={{ color: 'var(--text)' }}>{label}</label>
+                    <label className="mb-1.5 block text-sm font-medium text-ink">{label}</label>
                     <div className="relative">
                       <input
                         type={showPwd ? 'text' : 'password'}
@@ -98,8 +98,7 @@ export function ResetPasswordForm() {
                       <button
                         type="button"
                         onClick={() => setShowPwd(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                        style={{ color: 'var(--text-3)' }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-3"
                       >
                         {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
                       </button>

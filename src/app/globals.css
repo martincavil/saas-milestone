@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* ── Tailwind v4 theme tokens — replaces all style={{ color/bg: 'var(--x)' }} ── */
+@theme {
+  --color-base:    var(--bg);
+  --color-base-2:  var(--bg-2);
+  --color-base-3:  var(--bg-3);
+  --color-surf:    var(--surface);
+  --color-surf-2:  var(--surface-2);
+  --color-surf-3:  var(--surface-3);
+  --color-edge:    var(--border);
+  --color-edge-s:  var(--border-soft);
+  --color-ink:     var(--text);
+  --color-ink-2:   var(--text-2);
+  --color-ink-3:   var(--text-3);
+}
+
 :root {
   --background: #ffffff;
   --foreground: #0f0f10;

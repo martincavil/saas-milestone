@@ -9,9 +9,9 @@ const poppins = Poppins({ subsets: ['latin'], variable: '--font-poppins', weight
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme:dark)').matches;var dark=t==='dark'||((!t||t==='system')&&d);document.documentElement.classList.add(dark?'dark':'light');}catch(e){}})();`
 
 export const metadata: Metadata = {
-  title: 'saas-milestone — Post your MRR milestones to X automatically',
+  title: 'MilestoneHit — Post your MRR milestones to X automatically',
   description: 'Paste a Stripe key. When your MRR crosses $1, $10, $1k — a card posts to X instantly. Free under $100 MRR.',
-  openGraph: { title: 'saas-milestone', description: 'Auto-post MRR milestones to X the moment they happen.', type: 'website' },
+  openGraph: { title: 'MilestoneHit', description: 'Auto-post MRR milestones to X the moment they happen.', type: 'website' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

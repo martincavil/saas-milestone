@@ -76,7 +76,7 @@ const TWEETS = [
     handle: "@thomasbuilds",
     avatar: "#6366f1",
     content:
-      "I hit $500 MRR last night and woke up to 12 notifications. saas-milestone had already posted the card while I was asleep. That's the dream.",
+      "I hit $500 MRR last night and woke up to 12 notifications. MilestoneHit had already posted the card while I was asleep. That's the dream.",
     time: "2h ago",
   },
   {
@@ -268,7 +268,7 @@ export function FounderNote() {
               </div>
               <div>
                 <p className="font-semibold text-gray-900">From the builder</p>
-                <p className="text-sm text-gray-500">saas-milestone</p>
+                <p className="text-sm text-gray-500">MilestoneHit</p>
               </div>
             </div>
             <blockquote className="text-gray-700 leading-relaxed">

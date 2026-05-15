@@ -11,8 +11,7 @@ export function ThemeToggle({ variant = 'navbar' }: { variant?: 'navbar' | 'side
     return (
       <button
         onClick={toggle}
-        className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs transition-colors"
-        style={{ color: 'var(--text-2)' }}
+        className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs transition-colors text-ink-2"
         onMouseEnter={e => (e.currentTarget.style.background = 'var(--surface-2)')}
         onMouseLeave={e => (e.currentTarget.style.background = '')}
       >
@@ -26,8 +25,7 @@ export function ThemeToggle({ variant = 'navbar' }: { variant?: 'navbar' | 'side
     <button
       onClick={toggle}
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
-      style={{ color: 'var(--text-2)' }}
+      className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-ink-2"
       onMouseEnter={e => (e.currentTarget.style.background = 'var(--surface-2)')}
       onMouseLeave={e => (e.currentTarget.style.background = '')}
     >

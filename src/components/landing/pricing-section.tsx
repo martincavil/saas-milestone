@@ -186,8 +186,7 @@ export function PricingSection() {
               </ul>
               <Link
                 href="/login"
-                className="btn-primary block w-full justify-center text-center"
-                style={{ background: "#f59e0b" }}
+                className="btn-primary block w-full justify-center text-center bg-amber-500"
               >
                 Claim your spot
               </Link>

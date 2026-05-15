@@ -569,7 +569,7 @@ export function MilestoneCategoriesSection() {
                 </p>
                 <div className="mt-3 flex items-center gap-1.5 text-xs text-green-600 font-medium">
                   <Check size={12} strokeWidth={2.5} />
-                  Auto-posted by saas-milestone
+                  Auto-posted by MilestoneHit
                 </div>
               </div>
 

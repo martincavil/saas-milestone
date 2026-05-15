@@ -73,7 +73,7 @@ export function Navbar() {
               <Zap size={13} className="text-white" fill="white" />
             </div>
             <span className="text-sm font-semibold text-gray-900 font-poppins">
-              saas-milestone
+              MilestoneHit
             </span>
           </Link>
 

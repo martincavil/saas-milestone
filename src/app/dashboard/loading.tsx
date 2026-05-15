@@ -47,14 +47,11 @@ export default function DashboardLoading() {
           {[...Array(3)].map((_, i) => (
             <div key={i} className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <div className="h-2.5 rounded bg-white/6" style={{ width: `${60 + i * 15}px` }} />
+                <div className="h-2.5 rounded bg-white/6 w-[60px]" />
                 <div className="h-2.5 w-10 rounded bg-white/6" />
               </div>
               <div className="h-1.5 w-full rounded-full bg-white/6">
-                <div
-                  className="h-full rounded-full bg-white/12"
-                  style={{ width: `${75 - i * 20}%` }}
-                />
+                <div className="h-full rounded-full bg-white/12" />
               </div>
             </div>
           ))}

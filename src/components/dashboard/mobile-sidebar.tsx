@@ -35,14 +35,13 @@ export function MobileSidebarWrapper({ email, isSubscribed }: { email: string; i
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600">
             <Zap size={13} className="text-white" fill="white" />
           </div>
-          <span className="text-sm font-semibold font-poppins" style={{ color: 'var(--text)' }}>saas-milestone</span>
+          <span className="text-sm font-semibold font-poppins text-ink">MilestoneHit</span>
         </Link>
         <div className="flex items-center gap-1">
           <ThemeToggle variant="navbar" />
           <button
             onClick={() => setOpen(true)}
-            className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
-            style={{ color: 'var(--text-2)' }}
+            className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-ink-2"
           >
             <Menu size={18} />
           </button>
@@ -53,15 +52,15 @@ export function MobileSidebarWrapper({ email, isSubscribed }: { email: string; i
       {open && (
         <div className="fixed inset-0 z-50 md:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setOpen(false)} />
-          <div className="absolute inset-y-0 left-0 flex w-72 flex-col shadow-2xl" style={{ background: 'var(--bg)' }}>
-            <div className="flex h-14 items-center justify-between border-b px-4" style={{ borderColor: 'var(--border)' }}>
+          <div className="absolute inset-y-0 left-0 flex w-72 flex-col shadow-2xl bg-base">
+            <div className="flex h-14 items-center justify-between border-b px-4 border-edge">
               <div className="flex items-center gap-2">
                 <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600">
                   <Zap size={13} className="text-white" fill="white" />
                 </div>
-                <span className="text-sm font-semibold font-poppins" style={{ color: 'var(--text)' }}>saas-milestone</span>
+                <span className="text-sm font-semibold font-poppins text-ink">MilestoneHit</span>
               </div>
-              <button onClick={() => setOpen(false)} className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ color: 'var(--text-3)' }}>
+              <button onClick={() => setOpen(false)} className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-3">
                 <X size={16} />
               </button>
             </div>
@@ -89,12 +88,12 @@ export function MobileSidebarWrapper({ email, isSubscribed }: { email: string; i
               })}
             </nav>
 
-            <div className="border-t p-3" style={{ borderColor: 'var(--border)' }}>
+            <div className="border-t p-3 border-edge">
               <ThemeToggle variant="sidebar" />
               <div className="px-3 py-1.5">
-                <p className="text-xs truncate" style={{ color: 'var(--text-3)' }}>{email}</p>
+                <p className="text-xs truncate text-ink-3">{email}</p>
               </div>
-              <button onClick={handleSignOut} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs transition-colors" style={{ color: 'var(--text-2)' }}>
+              <button onClick={handleSignOut} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs transition-colors text-ink-2">
                 <LogOut size={13} />
                 Sign out
               </button>

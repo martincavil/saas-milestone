@@ -54,49 +54,41 @@ export function LoginForm({ error, message }: Props) {
 
   // ── Sign in ───────────────────────────────────────────────────────────────
   async function handleSignIn(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    reset();
+    e.preventDefault()
+    setLoading(true); reset()
 
-    const { error: authErr } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    setLoading(false);
-
-    if (authErr) {
-      setErr(
-        authErr.message === "Invalid login credentials"
-          ? "Wrong email or password."
-          : authErr.message,
-      );
-      return;
+    try {
+      const { error: authErr } = await supabase.auth.signInWithPassword({ email, password })
+      if (authErr) {
+        setErr(authErr.message === 'Invalid login credentials' ? 'Wrong email or password.' : authErr.message)
+        return
+      }
+      window.location.href = '/dashboard'
+    } catch (ex) {
+      setErr('Connection error — check your internet and try again.')
+    } finally {
+      setLoading(false)
     }
-    window.location.href = "/dashboard";
   }
 
   // ── Sign up ───────────────────────────────────────────────────────────────
   async function handleSignUp(e: React.FormEvent) {
-    e.preventDefault();
-    if (password.length < 8) {
-      setErr("Password must be at least 8 characters.");
-      return;
-    }
-    setLoading(true);
-    reset();
+    e.preventDefault()
+    if (password.length < 8) { setErr('Password must be at least 8 characters.'); return }
+    setLoading(true); reset()
 
-    const { error: authErr } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: `${location.origin}/api/auth/callback` },
-    });
-    setLoading(false);
-
-    if (authErr) {
-      setErr(authErr.message);
-      return;
+    try {
+      const { error: authErr } = await supabase.auth.signUp({
+        email, password,
+        options: { emailRedirectTo: `${location.origin}/api/auth/callback` },
+      })
+      if (authErr) { setErr(authErr.message); return }
+      setSuccess('Account created! Check your inbox to confirm your email.')
+    } catch (ex) {
+      setErr('Connection error — check your internet and try again.')
+    } finally {
+      setLoading(false)
     }
-    setSuccess("Account created! Check your inbox to confirm your email.");
   }
 
   // ── Google OAuth ──────────────────────────────────────────────────────────

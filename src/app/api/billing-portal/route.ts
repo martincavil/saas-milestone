@@ -2,7 +2,11 @@ import { withAuth, err } from '@/lib/api-helpers'
 import Stripe from 'stripe'
 import { NextResponse } from 'next/server'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-04-22.dahlia' })
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY
+  if (!key) throw new Error("STRIPE_SECRET_KEY not set")
+  return new Stripe(key, { apiVersion: "2026-04-22.dahlia" })
+}
 
 export async function POST() {
   return withAuth(async (user, service) => {
@@ -14,7 +18,7 @@ export async function POST() {
 
     if (!sub?.stripe_customer_id) return err('No billing account found.', 404)
 
-    const session = await stripe.billingPortal.sessions.create({
+    const session = await getStripe().billingPortal.sessions.create({
       customer:   sub.stripe_customer_id,
       return_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings`,
     })

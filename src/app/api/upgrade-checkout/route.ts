@@ -2,7 +2,11 @@ import { withAuth } from '@/lib/api-helpers'
 import Stripe from 'stripe'
 import { NextResponse } from 'next/server'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-04-22.dahlia' })
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY
+  if (!key) throw new Error("STRIPE_SECRET_KEY not set")
+  return new Stripe(key, { apiVersion: "2026-04-22.dahlia" })
+}
 
 export async function POST() {
   return withAuth(async (user, service) => {
@@ -14,7 +18,7 @@ export async function POST() {
 
     let customerId = sub?.stripe_customer_id
     if (!customerId) {
-      const customer = await stripe.customers.create({
+      const customer = await getStripe().customers.create({
         email:    user.email,
         metadata: { supabase_user_id: user.id },
       })
@@ -25,7 +29,7 @@ export async function POST() {
       )
     }
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       customer:             customerId,
       payment_method_types: ['card'],
       mode:                 'subscription',

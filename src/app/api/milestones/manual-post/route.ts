@@ -1,4 +1,5 @@
 import { withPro, err } from '@/lib/api-helpers'
+import { NextResponse } from 'next/server'
 import { generateMilestoneImage } from '@/lib/satori/generate-image'
 import { postMilestoneTweet } from '@/lib/twitter/post'
 import { MILESTONE_CONFIGS, type MilestoneCategory } from '@/types'
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
       .from('milestones_hit')
       .insert({ user_id: user.id, category, amount: milestone, hit_at: new Date().toISOString(), tweet_id: tweetId, posted: true })
 
-    return Response.json({
+    return NextResponse.json({
       success:  true,
       tweetId,
       tweetUrl: `https://x.com/i/web/status/${tweetId}`,

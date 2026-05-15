@@ -91,7 +91,7 @@ export function MRRChart({ accounts, totalMRR, allMilestones, view }: MRRChartPr
 
   const keys = view === 'total' ? ['Total MRR'] : accounts.map(a => a.name)
 
-  const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{name: string; value: number; color: string}>; label?: string }) => {
     if (!active || !payload?.length) return null
     return (
       <TooltipBox>
@@ -157,7 +157,7 @@ export function MRRBarChart({ accounts, totalMRR, allMilestones, view }: MRRChar
 
   const keys = view === 'total' ? ['Total MRR'] : accounts.map(a => a.name)
 
-  const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{name: string; value: number; color: string}>; label?: string }) => {
     if (!active || !payload?.length) return null
     const total = payload.reduce((s, p) => s + (p.value as number), 0)
     return (
@@ -213,7 +213,7 @@ export function GrowthChart({ currentMRR, milestones }: { currentMRR: number; mi
     return { month: point.label, 'Growth %': growth, MRR: point.value }
   })
 
-  const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{name: string; value: number; color: string}>; label?: string }) => {
     if (!active || !payload?.length) return null
     return (
       <TooltipBox>
@@ -276,7 +276,7 @@ export function MilestoneActivityChart({ milestones }: { milestones: MilestoneHi
 
   const hasAny = data.some(d => CATEGORIES.some(c => (d[c] as number) > 0))
 
-  const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{name: string; value: number; color: string}>; label?: string }) => {
     if (!active || !payload?.length) return null
     const visible = payload.filter(p => (p.value as number) > 0)
     if (!visible.length) return null

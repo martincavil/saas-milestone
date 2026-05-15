@@ -13,15 +13,16 @@ import * as path from 'path'
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
 const key = process.env.STRIPE_SECRET_KEY
-if (!key || key.startsWith('sk_live_...') || key === 'sk_live_...') {
+if (!key || key === 'sk_live_...') {
   console.error('❌  Set a real STRIPE_SECRET_KEY in .env.local first.')
   process.exit(1)
 }
 
-const stripe = new Stripe(key, { apiVersion: '2026-04-22.dahlia' })
+const stripeKey = key as string
+const stripe = new Stripe(stripeKey, { apiVersion: '2026-04-22.dahlia' })
 
 async function main() {
-  console.log(`\nConnecting to Stripe (${key.startsWith('sk_test') ? 'TEST mode' : 'LIVE mode'})...\n`)
+  console.log(`\nConnecting to Stripe (${stripeKey.startsWith('sk_test') ? 'TEST mode' : 'LIVE mode'})...\n`)
 
   // ── Product ──────────────────────────────────────────────────────────────────
   const product = await stripe.products.create({

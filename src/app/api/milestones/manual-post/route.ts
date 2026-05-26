@@ -17,26 +17,37 @@ export async function POST(request: Request) {
     if (!config) return err('Invalid category')
     if (!config.thresholds.includes(milestone)) return err('Invalid milestone for this category')
 
-    // Fetch user's Twitter tokens from DB
-    const { data: twitterConn } = await service
-      .from('twitter_connections')
-      .select('access_token, access_token_secret, screen_name')
-      .eq('user_id', user.id)
-      .single()
+    const [{ data: twitterConn }, { data: linkedinConn }] = await Promise.all([
+      service.from('twitter_connections').select('access_token, access_token_secret, screen_name').eq('user_id', user.id).single(),
+      service.from('linkedin_connections').select('linkedin_user_id, access_token').eq('user_id', user.id).single(),
+    ])
 
-    if (!twitterConn) return err('Connect X (Twitter) first in the Connectors tab.', 400)
+    if (!twitterConn && !linkedinConn) {
+      return err('Connect X (Twitter) or LinkedIn first in the Connectors tab.', 400)
+    }
 
     const imageBuffer = await generateMilestoneImage(saasName, milestone, currentValue, { category })
 
-    let tweetId: string
-    try {
-      tweetId = await postMilestoneTweet(saasName, milestone, imageBuffer, {
-        accessToken:       twitterConn.access_token,
-        accessTokenSecret: twitterConn.access_token_secret,
-      })
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : 'Unknown error'
-      return err(`Twitter post failed: ${msg}`, 500)
+    let tweetId: string | null = null
+    if (twitterConn) {
+      try {
+        tweetId = await postMilestoneTweet(saasName, milestone, imageBuffer, {
+          accessToken:       twitterConn.access_token,
+          accessTokenSecret: twitterConn.access_token_secret,
+        })
+      } catch (e) {
+        console.error('Twitter manual post failed:', e)
+      }
+    }
+
+    if (linkedinConn) {
+      try {
+        const { postMilestoneLinkedIn } = await import('@/lib/linkedin/post')
+        const accessToken = Buffer.from(linkedinConn.access_token, 'base64').toString('utf-8')
+        await postMilestoneLinkedIn(saasName, milestone, imageBuffer, linkedinConn.linkedin_user_id, accessToken)
+      } catch (e) {
+        console.error('LinkedIn manual post failed:', e)
+      }
     }
 
     await service
@@ -46,7 +57,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success:  true,
       tweetId,
-      tweetUrl: `https://x.com/i/web/status/${tweetId}`,
+      tweetUrl: tweetId ? `https://x.com/i/web/status/${tweetId}` : null,
     })
   })
 }

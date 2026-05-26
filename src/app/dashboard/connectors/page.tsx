@@ -2,11 +2,13 @@ import { createClient, createServiceClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { StripeConnectForm } from "@/components/dashboard/stripe-connect-form";
 import { TwitterConnect } from "@/components/dashboard/twitter-connect";
+import { LinkedInConnect } from "@/components/dashboard/linkedin-connect";
+import { GitHubConnect } from "@/components/dashboard/github-connect";
 import { PaywallBanner } from "@/components/dashboard/paywall-banner";
 import { calculateMRR } from "@/lib/stripe/mrr";
 import {
-  RedditIcon, SubstackIcon, LinkedInIcon,
-  GitHubIcon, TikTokIcon, YouTubeIcon, ProductHuntIcon,
+  RedditIcon, SubstackIcon,
+  TikTokIcon, YouTubeIcon, ProductHuntIcon,
 } from "@/components/ui/brand-logos";
 
 const COMING_SOON: {
@@ -22,20 +24,6 @@ const COMING_SOON: {
     color: "#ff4500",
     bg: "rgba(255,69,0,0.12)",
     desc: "Track subreddit followers and post engagement milestones",
-  },
-  {
-    name: "LinkedIn",
-    icon: <LinkedInIcon size={18} />,
-    color: "#0a66c2",
-    bg: "rgba(10,102,194,0.12)",
-    desc: "Auto-post milestones to your LinkedIn profile",
-  },
-  {
-    name: "GitHub",
-    icon: <GitHubIcon size={18} />,
-    color: "#e6edf3",
-    bg: "rgba(230,237,243,0.08)",
-    desc: "Track stars, forks, and contributor count",
   },
   {
     name: "Substack",
@@ -82,7 +70,7 @@ const ERROR_MESSAGES: Record<string, string> = {
 export default async function ConnectorsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; twitter?: string; msg?: string }>;
+  searchParams: Promise<{ error?: string; twitter?: string; linkedin?: string; msg?: string }>;
 }) {
   const supabase = await createClient();
   const {
@@ -93,7 +81,7 @@ export default async function ConnectorsPage({
 
   const service = await createServiceClient();
 
-  const [{ data: stripeConns }, { data: twitterConn }, { data: sub }] =
+  const [{ data: stripeConns }, { data: twitterConn }, { data: linkedinConn }, { data: githubConn }, { data: sub }] =
     await Promise.all([
       service
         .from("stripe_connections")
@@ -104,6 +92,17 @@ export default async function ConnectorsPage({
         .from("twitter_connections")
         .select("screen_name")
         .eq("user_id", user.id)
+        .single(),
+      service
+        .from("linkedin_connections")
+        .select("name")
+        .eq("user_id", user.id)
+        .single(),
+      service
+        .from("metric_connections")
+        .select("config")
+        .eq("user_id", user.id)
+        .eq("category", "stars")
         .single(),
       service
         .from("user_subscriptions")
@@ -139,6 +138,8 @@ export default async function ConnectorsPage({
   const successMsg =
     params.twitter === "connected"
       ? "X (Twitter) connected successfully!"
+      : params.linkedin === "connected"
+      ? "LinkedIn connected successfully!"
       : null;
 
   return (
@@ -179,6 +180,11 @@ export default async function ConnectorsPage({
           isConnected={!!twitterConn}
           screenName={twitterConn?.screen_name}
         />
+        <LinkedInConnect
+          isConnected={!!linkedinConn}
+          name={linkedinConn?.name}
+        />
+        <GitHubConnect githubRepo={githubConn?.config?.github_repo} />
       </section>
 
       {/* Coming soon */}

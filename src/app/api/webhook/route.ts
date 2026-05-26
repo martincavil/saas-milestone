@@ -1,4 +1,5 @@
 import { createServiceClient } from '@/lib/supabase/server'
+import { sendProWelcomeEmail } from '@/lib/email/send'
 import Stripe from 'stripe'
 import { NextResponse } from 'next/server'
 
@@ -38,6 +39,15 @@ export async function POST(request: Request) {
         },
         { onConflict: 'user_id' }
       )
+
+      try {
+        const { data: { user: authUser } } = await service.auth.admin.getUserById(userId)
+        if (authUser?.email) {
+          await sendProWelcomeEmail(authUser.email)
+        }
+      } catch (emailErr) {
+        console.error('Pro welcome email failed:', emailErr)
+      }
       break
     }
 

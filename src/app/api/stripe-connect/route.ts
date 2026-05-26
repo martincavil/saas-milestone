@@ -1,5 +1,7 @@
 import { withAuth, err, ok } from '@/lib/api-helpers'
 import { createStripeClient } from '@/lib/stripe/mrr'
+import { sendWelcomeEmail } from '@/lib/email/send'
+import { checkUserMilestones } from '@/lib/stripe/check-user'
 
 export async function POST(request: Request) {
   return withAuth(async (user, service) => {
@@ -29,6 +31,18 @@ export async function POST(request: Request) {
         .from('stripe_connections')
         .insert({ user_id: user.id, stripe_api_key_encrypted: encrypted, stripe_account_name: accountName || 'My SaaS' })
       if (error) return err(error.message, 500)
+
+      try {
+        const { data: { user: authUser } } = await service.auth.admin.getUserById(user.id)
+        if (authUser?.email) {
+          await sendWelcomeEmail(authUser.email, accountName || 'My SaaS')
+        }
+      } catch (emailErr) {
+        console.error('Welcome email failed:', emailErr)
+      }
+
+      // Background: immediately check milestones for this user (no Twitter posting)
+      checkUserMilestones(user.id).catch(() => {})
     }
 
     return ok()

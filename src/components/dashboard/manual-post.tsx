@@ -80,6 +80,7 @@ interface ManualPostProps {
   saasName: string;
   currentMRR?: number;
   twitterConnected: boolean;
+  linkedinConnected?: boolean;
 }
 
 export function ManualPost({
@@ -87,6 +88,7 @@ export function ManualPost({
   saasName,
   currentMRR,
   twitterConnected,
+  linkedinConnected = false,
 }: ManualPostProps) {
   const [category, setCategory] = useState<MilestoneCategory>("mrr");
   const [rawValue, setRawValue] = useState("");
@@ -155,8 +157,8 @@ export function ManualPost({
     );
   }
 
-  // ── No Twitter connected ──────────────────────────────────────────────────
-  if (!twitterConnected) {
+  // ── No social connected ───────────────────────────────────────────────────
+  if (!twitterConnected && !linkedinConnected) {
     return (
       <div className="rounded-2xl border border-white/8 bg-white/3 p-5">
         <div className="flex items-start gap-3">
@@ -164,13 +166,11 @@ export function ManualPost({
             <XIcon size={15} />
           </div>
           <div>
-            <p
-              className="text-sm font-semibold text-white font-poppins"
-            >
-              Connect X to post manually
+            <p className="text-sm font-semibold text-white font-poppins">
+              Connect X or LinkedIn to post
             </p>
             <p className="text-xs text-white/40 mt-1">
-              Connect your X account above first.
+              Go to Connectors and link at least one social account.
             </p>
           </div>
         </div>

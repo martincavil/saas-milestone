@@ -96,3 +96,35 @@ create index if not exists stripe_connections_user_id_idx on public.stripe_conne
 -- Migration helper: backfill category on existing rows
 -- (run manually if upgrading an existing DB)
 -- update public.milestones_hit set category = 'mrr' where category is null;
+
+-- linkedin_connections
+create table if not exists public.linkedin_connections (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  linkedin_user_id text not null,
+  name text not null,
+  access_token text not null,  -- base64-encoded
+  created_at timestamptz default now(),
+  updated_at timestamptz default now(),
+  unique(user_id)
+);
+alter table public.linkedin_connections enable row level security;
+create policy "Users own linkedin_connections" on public.linkedin_connections
+  for all using (auth.uid() = user_id);
+create index if not exists linkedin_connections_user_id_idx on public.linkedin_connections(user_id);
+
+-- user_settings — notification preferences and display options
+create table if not exists public.user_settings (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  email_milestone boolean not null default true,
+  email_weekly_digest boolean not null default false,
+  saas_name text,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now(),
+  unique(user_id)
+);
+alter table public.user_settings enable row level security;
+create policy "Users own user_settings" on public.user_settings
+  for all using (auth.uid() = user_id);
+create index if not exists user_settings_user_id_idx on public.user_settings(user_id);

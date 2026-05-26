@@ -2,6 +2,8 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { calculateMRR, getNewMilestones, getSubscriberCount } from '@/lib/stripe/mrr'
 import { generateMilestoneImage } from '@/lib/satori/generate-image'
 import { postMilestoneTweet } from '@/lib/twitter/post'
+import { getGitHubStars } from '@/lib/github/stars'
+import { sendMilestoneEmail } from '@/lib/email/send'
 import { NextResponse } from 'next/server'
 
 export const maxDuration = 300
@@ -90,6 +92,29 @@ export async function GET(request: Request) {
           }
         }
 
+        // ── LinkedIn posting ───────────────────────────────────────────────
+        const { data: linkedinConn } = await service
+          .from('linkedin_connections')
+          .select('linkedin_user_id, access_token')
+          .eq('user_id', conn.user_id)
+          .single()
+
+        if (linkedinConn) {
+          try {
+            const { postMilestoneLinkedIn } = await import('@/lib/linkedin/post')
+            const linkedInAccessToken = Buffer.from(linkedinConn.access_token, 'base64').toString('utf-8')
+            await postMilestoneLinkedIn(
+              conn.stripe_account_name,
+              milestone,
+              imageBuffer,
+              linkedinConn.linkedin_user_id,
+              linkedInAccessToken
+            )
+          } catch (err) {
+            console.error('LinkedIn post failed:', err)
+          }
+        }
+
         await service.from('milestones_hit').insert({
           user_id:   conn.user_id,
           category:  'mrr',
@@ -99,6 +124,25 @@ export async function GET(request: Request) {
           image_url: null,
           posted:    !!tweetId,
         })
+
+        try {
+          const [{ data: { user: authUser } }, { data: userSettings }] = await Promise.all([
+            service.auth.admin.getUserById(conn.user_id),
+            service.from('user_settings').select('email_milestone').eq('user_id', conn.user_id).single(),
+          ])
+          const emailEnabled = userSettings?.email_milestone ?? true
+          if (authUser?.email && emailEnabled) {
+            await sendMilestoneEmail(authUser.email, {
+              saasName: conn.stripe_account_name,
+              amount:   milestone,
+              category: 'mrr',
+              posted:   !!tweetId,
+              tweetUrl: tweetId ? `https://x.com/i/web/status/${tweetId}` : undefined,
+            })
+          }
+        } catch (emailErr) {
+          console.error('Milestone email failed (mrr):', emailErr)
+        }
 
         results.push({ user_id: conn.user_id, milestone, posted: !!tweetId, subscribers: subscriberCount })
       }
@@ -114,12 +158,99 @@ export async function GET(request: Request) {
         await checkFollowersMilestone(service, conn, twitterConn, apiKey, currentMRR)
       }
 
+      // ── Check GitHub Stars milestone ───────────────────────────────────────
+      const { data: metricConns } = await service
+        .from('metric_connections')
+        .select('config, last_value, category')
+        .eq('user_id', conn.user_id)
+        .eq('category', 'stars')
+        .eq('enabled', true)
+        .single()
+
+      if (metricConns?.config?.github_repo) {
+        await checkGitHubStarsMilestone(service, conn, metricConns)
+      }
+
     } catch (err) {
       console.error(`Error processing user ${conn.user_id}:`, err)
     }
   }
 
   return NextResponse.json({ processed: connections.length, milestones: results })
+}
+
+// ─── GitHub Stars milestone check ─────────────────────────────────────────
+
+async function checkGitHubStarsMilestone(
+  service: Awaited<ReturnType<typeof createServiceClient>>,
+  conn: { user_id: string; stripe_account_name: string },
+  metricConn: { config: Record<string, string>; last_value: number; category: string }
+) {
+  try {
+    const repo = metricConn.config.github_repo
+    const starCount = await getGitHubStars(repo)
+
+    const prevStars = metricConn.last_value ?? 0
+    const starThresholds = [10, 50, 100, 500, 1000, 5000, 10000]
+    const newStarMilestones = starThresholds.filter(
+      t => prevStars < t && starCount >= t
+    )
+
+    for (const milestone of newStarMilestones) {
+      const imageBuffer = await generateMilestoneImage(
+        conn.stripe_account_name,
+        milestone,
+        0,
+        { category: 'stars', previousMRR: prevStars }
+      )
+
+      let tweetId: string | null = null
+      const { data: twitterCreds } = await service
+        .from('twitter_connections')
+        .select('access_token, access_token_secret')
+        .eq('user_id', conn.user_id)
+        .single()
+
+      if (twitterCreds) {
+        try {
+          tweetId = await postMilestoneTweet(
+            conn.stripe_account_name,
+            milestone,
+            imageBuffer,
+            {
+              accessToken:       twitterCreds.access_token,
+              accessTokenSecret: twitterCreds.access_token_secret,
+            }
+          )
+        } catch (err) {
+          console.error('Twitter post failed (stars):', err)
+        }
+      }
+
+      await service.from('milestones_hit').insert({
+        user_id:   conn.user_id,
+        category:  'stars',
+        amount:    milestone,
+        hit_at:    new Date().toISOString(),
+        tweet_id:  tweetId,
+        image_url: null,
+        posted:    !!tweetId,
+      })
+    }
+
+    // Update last_value and last_checked_at
+    await service
+      .from('metric_connections')
+      .update({
+        last_value:      starCount,
+        last_checked_at: new Date().toISOString(),
+      })
+      .eq('user_id', conn.user_id)
+      .eq('category', 'stars')
+
+  } catch {
+    // Stars check is best-effort
+  }
 }
 
 // ─── Followers milestone check ─────────────────────────────────────────────
@@ -189,6 +320,22 @@ async function checkFollowersMilestone(
         tweet_id: tweetId,
         posted:   !!tweetId,
       })
+
+      try {
+        const { sendMilestoneEmail: sendEmail } = await import('@/lib/email/send')
+        const { data: { user: authUser } } = await service.auth.admin.getUserById(conn.user_id)
+        if (authUser?.email) {
+          await sendEmail(authUser.email, {
+            saasName: conn.stripe_account_name,
+            amount:   milestone,
+            category: 'followers',
+            posted:   !!tweetId,
+            tweetUrl: tweetId ? `https://x.com/i/web/status/${tweetId}` : undefined,
+          })
+        }
+      } catch (emailErr) {
+        console.error('Milestone email failed (followers):', emailErr)
+      }
     }
   } catch {
     // Followers check is best-effort

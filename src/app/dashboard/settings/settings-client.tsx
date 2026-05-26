@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Loader2,
   Zap,
@@ -8,6 +8,7 @@ import {
   Check,
   ExternalLink,
   RefreshCw,
+  Bell,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,7 +28,30 @@ export function SettingsClient({
   const [portalLoading, setPortalLoading] = useState(false);
   const [syncLoading, setSyncLoading] = useState(false);
   const [syncResult, setSyncResult] = useState<string | null>(null);
+  const [notifMilestone, setNotifMilestone] = useState(true);
+  const [notifDigest, setNotifDigest] = useState(false);
+  const [notifSaving, setNotifSaving] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    fetch('/api/settings/notifications')
+      .then(r => r.json())
+      .then(d => {
+        setNotifMilestone(d.email_milestone ?? true)
+        setNotifDigest(d.email_weekly_digest ?? false)
+      })
+      .catch(() => {})
+  }, [])
+
+  async function saveNotif(key: 'email_milestone' | 'email_weekly_digest', value: boolean) {
+    setNotifSaving(true)
+    await fetch('/api/settings/notifications', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ [key]: value }),
+    }).catch(() => {})
+    setNotifSaving(false)
+  }
 
   async function handleSync() {
     setSyncLoading(true);
@@ -224,6 +248,58 @@ export function SettingsClient({
               {syncResult}
             </p>
           )}
+        </div>
+      </section>
+
+      {/* Notifications */}
+      <section className="space-y-3">
+        <p className="text-xs font-medium text-white/35 uppercase tracking-wider">
+          Notifications
+        </p>
+        <div className="rounded-2xl border border-white/8 bg-white/4 divide-y divide-white/6">
+          {[
+            {
+              key: "email_milestone" as const,
+              label: "Milestone alerts",
+              desc: "Email when a new milestone is reached",
+              value: notifMilestone,
+              setter: setNotifMilestone,
+            },
+            {
+              key: "email_weekly_digest" as const,
+              label: "Weekly digest",
+              desc: "Summary of your MRR and milestones each week",
+              value: notifDigest,
+              setter: setNotifDigest,
+            },
+          ].map(({ key, label, desc, value, setter }) => (
+            <div key={key} className="flex items-center justify-between px-5 py-4">
+              <div className="flex items-center gap-3">
+                <Bell size={14} className="text-white/30 shrink-0" />
+                <div>
+                  <p className="text-sm text-white/80">{label}</p>
+                  <p className="text-xs text-white/35 mt-0.5">{desc}</p>
+                </div>
+              </div>
+              <button
+                disabled={notifSaving}
+                onClick={() => {
+                  const next = !value
+                  setter(next)
+                  saveNotif(key, next)
+                }}
+                className={`relative h-6 w-11 shrink-0 rounded-full border transition-colors disabled:opacity-50 ${
+                  value ? "border-indigo-500/40 bg-indigo-600" : "border-white/15 bg-white/8"
+                }`}
+              >
+                <span
+                  className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+                    value ? "translate-x-5" : "translate-x-0.5"
+                  }`}
+                />
+              </button>
+            </div>
+          ))}
         </div>
       </section>
 

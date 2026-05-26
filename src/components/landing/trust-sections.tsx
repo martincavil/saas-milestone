@@ -518,7 +518,7 @@ const FAQS = [
   },
   {
     q: "Can I connect LinkedIn too?",
-    a: "Not yet — LinkedIn's OAuth is more complex and we didn't want to delay the launch. It's next on the roadmap. X is the primary channel for #buildinpublic anyway.",
+    a: "Yes! LinkedIn posting is live. Connect your account in the Connectors tab and every milestone will be auto-posted to both X and LinkedIn simultaneously.",
   },
   {
     q: "Can I preview or edit the post before it goes out?",

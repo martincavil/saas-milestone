@@ -1,7 +1,8 @@
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import { ProGate } from '@/components/dashboard/pro-gate'
 import { OverviewClient } from './overview-client'
+import { FreeOverview } from '@/components/dashboard/free-overview'
+import { calculateMRR } from '@/lib/stripe/mrr'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -25,7 +26,32 @@ export default async function DashboardPage() {
   const isSubscribed = sub?.status === 'active'
 
   if (!isSubscribed) {
-    return <ProGate feature="Overview dashboard" />
+    // Fetch current MRR for free users (best-effort, for the teaser view)
+    let currentMRR = 0
+    if (stripeConns && stripeConns.length > 0) {
+      try {
+        const { data: connWithKey } = await service
+          .from('stripe_connections')
+          .select('stripe_api_key_encrypted')
+          .eq('id', stripeConns[0].id)
+          .single()
+        if (connWithKey) {
+          const apiKey = Buffer.from(connWithKey.stripe_api_key_encrypted, 'base64').toString('utf-8')
+          currentMRR = await calculateMRR(apiKey)
+        }
+      } catch {
+        // Best-effort — show $0 if we can't fetch
+      }
+    }
+
+    return (
+      <FreeOverview
+        milestones={milestones ?? []}
+        twitterAccounts={twitterConns ?? []}
+        stripeAccounts={stripeConns ?? []}
+        currentMRR={currentMRR}
+      />
+    )
   }
 
   return (

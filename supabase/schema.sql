@@ -71,18 +71,23 @@ alter table public.metric_connections enable row level security;
 alter table public.user_subscriptions enable row level security;
 alter table public.twitter_connections enable row level security;
 
+drop policy if exists "Users own stripe_connections" on public.stripe_connections;
 create policy "Users own stripe_connections" on public.stripe_connections
   for all using (auth.uid() = user_id);
 
+drop policy if exists "Users own milestones_hit" on public.milestones_hit;
 create policy "Users own milestones_hit" on public.milestones_hit
   for all using (auth.uid() = user_id);
 
+drop policy if exists "Users own metric_connections" on public.metric_connections;
 create policy "Users own metric_connections" on public.metric_connections
   for all using (auth.uid() = user_id);
 
+drop policy if exists "Users own user_subscriptions" on public.user_subscriptions;
 create policy "Users own user_subscriptions" on public.user_subscriptions
   for all using (auth.uid() = user_id);
 
+drop policy if exists "Users own twitter_connections" on public.twitter_connections;
 create policy "Users own twitter_connections" on public.twitter_connections
   for all using (auth.uid() = user_id);
 
@@ -109,6 +114,7 @@ create table if not exists public.linkedin_connections (
   unique(user_id)
 );
 alter table public.linkedin_connections enable row level security;
+drop policy if exists "Users own linkedin_connections" on public.linkedin_connections;
 create policy "Users own linkedin_connections" on public.linkedin_connections
   for all using (auth.uid() = user_id);
 create index if not exists linkedin_connections_user_id_idx on public.linkedin_connections(user_id);
@@ -125,6 +131,7 @@ create table if not exists public.user_settings (
   unique(user_id)
 );
 alter table public.user_settings enable row level security;
+drop policy if exists "Users own user_settings" on public.user_settings;
 create policy "Users own user_settings" on public.user_settings
   for all using (auth.uid() = user_id);
 create index if not exists user_settings_user_id_idx on public.user_settings(user_id);
